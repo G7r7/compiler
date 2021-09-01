@@ -5,6 +5,8 @@ struct token {
 };
 
 enum Tokens {
+    tok_cst,
+    tok_id,
     tok_plus,
     tok_minus,
     tok_times,
@@ -32,13 +34,11 @@ enum Tokens {
     tok_break,
     tok_continue,
     tok_return,
-    tok_eof,
-    tok_cst,
-    tok_id,
     tok_left_parenthesis,
     tok_right_parenthesis,
     tok_left_bracket,
     tok_right_bracket,
     tok_left_curly,
-    tok_right_curly
+    tok_right_curly,
+    tok_eof
 };

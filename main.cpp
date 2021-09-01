@@ -15,82 +15,110 @@ void advance(void) {
         character = fgetc(fp);
 
     switch (character) {
-            case '+': next.type = tok_plus;
+        case '+': next.type = tok_plus; break;
+        case '-': next.type = tok_minus; break;
+        case '*': next.type = tok_times; break;
+        case '/': next.type = tok_divide; break;
+        case '%': next.type = tok_modulo; break;
+        case '!':
+            if((character = fgetc(fp)) == '=' ) {
+                next.type = tok_not_equals_to;
                 break;
-            case '-': next.type = tok_minus;
+            } else {
+                ungetc(character,fp);
+                next.type = tok_bang;
                 break;
-            case '*': next.type = tok_times;
-                break;
-            case '/': next.type = tok_divide;
-                break;
-            case '%': next.type = tok_modulo;
-                break;
-            case '!':  {
-                if((character = fgetc(fp)) == '=' ){
-                    next.type = tok_not_equals_to;
-                }else{
-                    ungetc(character,fp);
-                    next.type = tok_bang;
-                }
             }
+        case '&':
+            if((character = fgetc(fp)) == '&' ) {
+                next.type = tok_and;
                 break;
-            case '&': {
-                if((character = fgetc(fp)) == '&' ){
-                    next.type = tok_and;
-                }else{
-                    ungetc(character,fp);
-                    next.type = tok_address;
-                }
+            } else {
+                ungetc(character,fp);
+                next.type = tok_address;
+                break;
             }
+        case '=':
+            if((character = fgetc(fp)) == '=' ) {
+                next.type = tok_equals_to;
                 break;
-            case '=': {
-                if((character = fgetc(fp)) == '=' ){
-                    next.type = tok_equals_to;
-                }else{
-                    ungetc(character,fp);
-                    next.type = tok_equals;
-                }
+            } else {
+                ungetc(character,fp);
+                next.type = tok_equals;
+                break;
             }
+        case '<':
+            if((character = fgetc(fp)) == '=' ) {
+                next.type = tok_less_or_equal;
+            } else {
+                ungetc(character,fp);
+                next.type = tok_less_than;
                 break;
-            case '<': {
-                if((character = fgetc(fp)) == '=' ){
-                    next.type = tok_less_or_equal;
-                }else{
-                    ungetc(character,fp);
-                    next.type = tok_less_than;
-                }
             }
+        case '>':
+            if((character = fgetc(fp)) == '=') {
+                next.type = tok_more_or_equal;
                 break;
-            case '>':  {
-                if((character = fgetc(fp)) == '=' ){
-                    next.type = tok_more_or_equal;
-                }else{
-                    ungetc(character,fp);
-                    next.type = tok_more_than;
-                }
+            } else {
+                ungetc(character,fp);
+                next.type = tok_more_than;
+                break;
             }
+        case '|': 
+            if (character = fgetc(fp) == '|') {
+                next.type = tok_or;
                 break;
-            case '(': next.type = tok_left_parenthesis;
-                break;
-            case ')': next.type = tok_right_parenthesis;
-                break;
-            case '[': next.type = tok_left_bracket;
-                break;
-            case ']': next.type = tok_right_bracket;
-                break;
-            case '{': next.type = tok_left_curly;
-                break;
-            case '}': next.type = tok_right_curly;
-                break;
-            case ',': next.type = tok_comma;
-                break;
-            case ';': next.type = tok_semi_colon;
-                break;
-            default:{
-                
+            } else {
+                ungetc(character, fp);
             }
+        case '(': next.type = tok_left_parenthesis; break;
+        case ')': next.type = tok_right_parenthesis; break;
+        case '[': next.type = tok_left_bracket; break;
+        case ']': next.type = tok_right_bracket; break;
+        case '{': next.type = tok_left_curly; break;
+        case '}': next.type = tok_right_curly; break;
+        case ',': next.type = tok_comma; break;
+        case ';': next.type = tok_semi_colon; break;
+        case 'i': // int
+            if((character = fgetc(fp)) == 'n') {
+                if((character = fgetc(fp)) == 't') {
+                    next.type = tok_int;
+                    break;
+                } else { ungetc(character, fp); }
+            } else { ungetc(character, fp); }
+            if((character = fgetc(fp)) == 'f') {
+                next.type = tok_if;
+                break;
+            } else { ungetc(character, fp); }
+        case 'e': // else
+            if((character = fgetc(fp)) == 'l') {
+                if((character = fgetc(fp)) == 's') {
+                    if((character = fgetc(fp)) == 'e') {
+                        next.type = tok_else;
+                        break;
+                    } else { ungetc(character, fp); }
+                } else { ungetc(character, fp); }
+            } else { ungetc(character, fp); }
+        case 'f': // for
+            if((character = fgetc(fp)) == 'o') {
+                if((character = fgetc(fp)) == 'r') {
+                    next.type = tok_for;
+                    break;
+                } else { ungetc(character, fp); }
+            } else { ungetc(character, fp); }
+        case 'w': // while
+            if((character = fgetc(fp)) == 'h') {
+                if((character = fgetc(fp)) == 'i') {
+                    if((character = fgetc(fp)) == 'l') {
+                        if((character = fgetc(fp)) == 'e') {
+                            next.type = tok_while;
+                            break;
+                        } else { ungetc(character, fp); }
+                    } else { ungetc(character, fp); }
+                } else { ungetc(character, fp); }
+            } else { ungetc(character, fp); }
+        default: { next.type = 0; next.value = character; } // Constant
     }
-
 }
 
 bool check(int type) {
@@ -126,9 +154,9 @@ int main(int argc, char const *argv[])
     {
         ungetc(character, fp);
         advance();
-        printf("%d", current.type);
+        printf("%d\n", current.type);
     }
-    printf("%d",current.type );
+    printf("%d\n",current.type );
 
     fclose(fp);
     return 0;
