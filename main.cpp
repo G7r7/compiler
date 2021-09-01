@@ -116,21 +116,20 @@ bool eof() {
 
 int main(int argc, char const *argv[])
 {
-    current.type = 666;
-
     fp = fopen(argv[1], "r");
     if(fp == NULL) {
         perror("Can't open file");
     }
     advance();
-    printf("%d", current.type);
 
-    while (character = fgetc(fp) != EOF)
+    while ((character = fgetc(fp)) != EOF)
     {
         ungetc(character, fp);
         advance();
         printf("%d", current.type);
     }
+    printf("%d",current.type );
 
+    fclose(fp);
     return 0;
 }
