@@ -9,15 +9,25 @@ FILE *fp;
 int character;
 token current;
 token next;
-int index_id;
-std::unordered_map<int,std::string> id_table;
+int index_id = 0;
+int line = 1;
+std::unordered_map<int,std::string> id_map;
+
+void erreur(std::string msg) {
+    printf("%s\n", msg);
+}
 
 void advance(void) {
     current = next;
     character = fgetc(fp);
-    while (character == ' ')
+    while (isspace(character)){
+        if(character == '\n'){
+            line++;
+        }
         character = fgetc(fp);
-
+    }
+        
+    next.line = line;
     switch (character) {
             case '+': next.type = tok_plus;
                 break;
@@ -114,30 +124,36 @@ void advance(void) {
                     ungetc(character,fp);
 
                     if(value.compare("int") == 0){
-
+                        next.type = tok_int;
                     }else if(value.compare("if") == 0){
-
+                        next.type = tok_if;
                     }else if(value.compare("else") == 0){
-
+                        next.type = tok_else;
                     }else if(value.compare("for") == 0){
-
+                        next.type = tok_for;
                     }else if(value.compare("while") == 0){
-
+                        next.type = tok_while;
                     }else if(value.compare("do") == 0){
-
+                        next.type = tok_do;
                     }else if(value.compare("break") == 0){
-
+                        next.type = tok_break;
+                    }else if(value.compare("continue") == 0){
+                        next.type = tok_continue;
+                    }else if(value.compare("return") == 0){
+                        next.type = tok_return;
                     }else {
                         //c'est un identificateur
                         //hash-map index_id,value
-
+                        id_map[index_id] = value;
+                        
                         next.value = index_id;
-
+                        index_id++;
                         next.type = tok_id;
                     }
 
                 }else{
                     //char inconnu
+                    erreur("Charactère inconnu ligne : " + std::to_string(line));
                 }
             }
     }
@@ -148,10 +164,6 @@ bool check(int type) {
         return false;
     advance();
     return true;
-}
-
-void erreur(char* msg) {
-    printf("%s\n", msg);
 }
 
 void accept(int type) {
