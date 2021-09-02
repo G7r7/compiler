@@ -2,11 +2,15 @@
 #include <stdlib.h>
 #include <string>
 #include "token.h"
+#include <iostream>
+#include <unordered_map>
 
 FILE *fp;
 int character;
 token current;
 token next;
+int index_id;
+std::unordered_map<int,std::string> id_table;
 
 void advance(void) {
     current = next;
@@ -87,10 +91,55 @@ void advance(void) {
             case ';': next.type = tok_semi_colon;
                 break;
             default:{
-                
+            	if(isdigit(character)){
+                    std::string value;
+                    value += character;
+
+                    while(isdigit(character = fgetc(fp))){
+                        value += character;
+                    }
+                    ungetc(character,fp);
+                    next.value = std::stoi(value);
+
+                    next.type = tok_cst;
+            	}else if(character == EOF){
+                    next.type = tok_eof;
+                }else if(isalnum(character) || character == '_'){
+                    std::string value;
+                    value += character;
+
+                    while(isalnum(character = fgetc(fp)) || character == '_'){
+                        value += character;
+                    }
+                    ungetc(character,fp);
+
+                    if(value.compare("if") == 0){
+
+                    }else if(value.compare("else") == 0){
+
+                    }else if(value.compare("for") == 0){
+
+                    }else if(value.compare("while") == 0){
+
+                    }else if(value.compare("else") == 0){
+
+                    }else if(value.compare("else") == 0){
+                        
+                    }else {
+                        //c'est un identificateur
+                        //hash-map index_id,value
+
+                        next.value = index_id;
+
+                        next.type = tok_id;
+                    }
+
+                }else{
+                    //char inconnu
+                }
+ 
             }
     }
-
 }
 
 bool check(int type) {
@@ -128,7 +177,8 @@ int main(int argc, char const *argv[])
         advance();
         printf("%d", current.type);
     }
-    printf("%d",current.type );
+    printf("%d \n",next.type);
+    printf("value %d \n",next.value);
 
     fclose(fp);
     return 0;
