@@ -14,7 +14,7 @@ int line = 1;
 std::unordered_map<int,std::string> id_map;
 
 void erreur(std::string msg) {
-    printf("%s\n", msg);
+    std::cout << msg <<std::endl;
 }
 
 void advance(void) {
@@ -48,15 +48,25 @@ void advance(void) {
                 }
             }
                 break;
-            case '&': {
+            case '&': {        
                 if((character = fgetc(fp)) == '&' ){
-                    next.type = tok_and;
+                    next.type = tok_and;                  
                 }else{
                     ungetc(character,fp);
                     next.type = tok_address;
                 }
             }
                 break;
+            case '|': {               
+                if((character = fgetc(fp)) == '|' ){
+                    next.type = tok_or;         
+                }else{
+                    ungetc(character,fp);
+                    erreur(" | manquant ligne : " + std::to_string(line));
+                    next.type = tok_error;
+                }
+            }
+            break; 
             case '=': {
                 if((character = fgetc(fp)) == '=' ){
                     next.type = tok_equals_to;
@@ -116,8 +126,8 @@ void advance(void) {
                     next.type = tok_eof;
                 }else if(isalnum(character) || character == '_'){
                     std::string value;
-                    value += character;
-
+                    value += character;         
+                    
                     while(isalnum(character = fgetc(fp)) || character == '_'){
                         value += character;
                     }
@@ -154,6 +164,7 @@ void advance(void) {
                 }else{
                     //char inconnu
                     erreur("Charactère inconnu ligne : " + std::to_string(line));
+                    next.type = tok_error;
                 }
             }
     }

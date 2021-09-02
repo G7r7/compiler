@@ -40,5 +40,6 @@ enum Tokens {
     tok_right_bracket,
     tok_left_curly,
     tok_right_curly,
-    tok_eof
+    tok_eof,
+    tok_error
 };
