@@ -2,8 +2,12 @@
 #include <stdlib.h>
 #include "globals.h"
 #include "lexic.h"
+#include <fstream>
+#include "gencode.h"
+#include "syntax.h"
 
 FILE *fp;
+std::ofstream ofp;
 int character;
 token current;
 token next;
@@ -17,17 +21,25 @@ int main(int argc, char const *argv[])
     if(fp == NULL) {
         perror("Can't open file");
     }
-    advance();
-
-    while ((character = fgetc(fp)) != EOF)
-    {
-        ungetc(character, fp);
-        advance();
-        printf("%d", current.type);
+    ofp.open(argv[2]);
+    if(!ofp.is_open()){
+        perror("Can't open output file");
     }
-    printf("%d \n",next.type);
-    printf("value %d \n",next.value);
+
+    // advance();
+
+    // while ((character = fgetc(fp)) != EOF)
+    // {
+    //     ungetc(character, fp);
+    //     advance();
+    //     printf("%d", current.type);
+    // }
+    // printf("%d \n",next.type);
+    // printf("value %d \n",next.value);
+    node N = G();
+    gencode(N);
 
     fclose(fp);
+    ofp.close();
     return 0;
 }

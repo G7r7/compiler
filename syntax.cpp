@@ -47,3 +47,4 @@ node A() { // Constantes
 node S() { // Suffixes
     return A();
 }
+

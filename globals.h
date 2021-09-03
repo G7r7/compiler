@@ -7,8 +7,10 @@
 #include <iostream>
 #include <unordered_map>
 #include "token.h"
+#include <fstream> 
 
 extern FILE *fp;
+extern std::ofstream ofp;
 extern int character;
 extern token current;
 extern token next;
