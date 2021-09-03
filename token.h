@@ -1,3 +1,6 @@
+#ifndef Token
+#define Token
+
 struct token {
     int type;
     int value;
@@ -43,3 +46,5 @@ enum Tokens {
     tok_eof,
     tok_error
 };
+
+#endif
