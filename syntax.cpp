@@ -4,6 +4,8 @@
 #include "globals.h"
 #include "syntax.h"
 
+/* Returns the syntaxic node tree in function of the current token
+*/
 node G() {
     return E();
 }
@@ -35,12 +37,15 @@ node A() { // Constantes
         N.value = current.value;
         N.line = current.line;
         return N;
-    } else if (tok_left_parenthesis) {
+    } else if (check(tok_left_parenthesis)) {
         node N = E();
         accept(tok_right_parenthesis);
         return N;
     } else {
-        erreur("Expression attendue");
+        accept(tok_eof);
+        node N;
+        N.type = node_eof;
+        return N;
     }    
 }
 

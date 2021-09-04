@@ -14,7 +14,8 @@ struct node
 
 enum Nodes {
     node_cst,
-    node_minus_unary
+    node_minus_unary,
+    node_eof
 };
 
 #endif

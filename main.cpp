@@ -17,29 +17,24 @@ std::unordered_map<int,std::string> id_map;
 
 int main(int argc, char const *argv[])
 {
-    fp = fopen(argv[1], "r");
+    fp = fopen(argv[1], "r"); // Opening input file
     if(fp == NULL) {
         perror("Can't open file");
     }
-    ofp.open(argv[2]);
+    ofp.open(argv[2]); // Opening output file
     if(!ofp.is_open()){
         perror("Can't open output file");
     }
 
-    // advance();
-
-    // while ((character = fgetc(fp)) != EOF)
-    // {
-    //     ungetc(character, fp);
-    //     advance();
-    //     printf("%d", current.type);
-    // }
-    // printf("%d \n",next.type);
-    // printf("value %d \n",next.value);
-    node N = G();
-    gencode(N);
-
-    fclose(fp);
-    ofp.close();
+    advance(); // Initializing globals
+    node N; 
+    while ((N = G()).type != node_eof) // Generating a new syntaxic tree until end of file 
+    {
+        gencode(N);  // Print that tree
+    }
+    
+    
+    fclose(fp); // Closing input file
+    ofp.close(); // Clsing output file
     return 0;
 }

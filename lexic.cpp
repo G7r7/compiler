@@ -10,6 +10,8 @@ void erreur(std::string msg) {
     std::cout << msg <<std::endl;
 }
 
+/* Set the current token to next token then detects the next token.
+*/
 void advance(void) {
     current = next;
     character = fgetc(fp);
@@ -104,22 +106,22 @@ void advance(void) {
             case ';': next.type = tok_semi_colon;
                 break;
             default:{
-            	if(isdigit(character)){
+            	if(isdigit(character)){ // Numeric constant
                     std::string value;
-                    value += character;
+                    value += character; // storing value as a string
 
                     while(isdigit(character = fgetc(fp))){
                         value += character;
                     }
                     ungetc(character,fp);
-                    next.value = std::stoi(value);
+                    next.value = std::stoi(value); // Converting it in integer
 
                     next.type = tok_cst;
             	}else if(character == EOF){
                     next.type = tok_eof;
-                }else if(isalnum(character) || character == '_'){
+                }else if(isalnum(character) || character == '_'){ // Alphanumeric word
                     std::string value;
-                    value += character;         
+                    value += character; // Storing value as string
                     
                     while(isalnum(character = fgetc(fp)) || character == '_'){
                         value += character;
@@ -147,7 +149,7 @@ void advance(void) {
                     }else {
                         //c'est un identificateur
                         //hash-map index_id,value
-                        id_map[index_id] = value;
+                        id_map[index_id] = value; // Couplage du nom de la variable à un indentifiant unique
                         
                         next.value = index_id;
                         index_id++;
@@ -163,18 +165,26 @@ void advance(void) {
     }
 }
 
-bool check(int type) {
-    if(type != next.type)
+/* Checks if next token is of specified type.
+If true the token scope will move foward of one token.
+(current = next)
+*/
+bool check(int type) { 
+    if(type != next.type)   
         return false;
     advance();
     return true;
 }
 
+/* Throws an error if the next token is not of the given type
+*/
 void accept(int type) {
     if(!check(type))
         erreur("Erreur\n");
 }
 
+/* Is the next token an end of file token ?
+*/
 bool eof() {
     return next.type == tok_eof;
 }
