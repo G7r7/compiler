@@ -25,7 +25,18 @@ node P() { // Préfixes
         N.children.push_back(A);
         N.line = current.line;
         return N;
-    } else {
+    } else if(check(tok_address)){
+
+    }else if(check(tok_bang)){
+        node A = P();
+        node N;
+        N.type = node_not;
+        N.children.push_back(A);
+        N.line = current.line;
+        return N;
+    }else if(check(tok_times)){
+
+    }else{
         return S();
     }
 }
@@ -42,6 +53,7 @@ node A() { // Constantes
         accept(tok_right_parenthesis);
         return N;
     } else {
+        //erreur
         accept(tok_eof);
         node N;
         N.type = node_eof;

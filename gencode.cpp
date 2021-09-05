@@ -10,6 +10,15 @@ void gencode(node N){
             ofp << command;
             break;
         case node_minus_unary:
+            command = "push 0\n";
+            command += std::to_string(N.children[0].value);
+            command += "\nsub\n";
+            ofp << command;
+            break;
+        case node_not:
+            command = std::to_string(N.children[0].value) + "\n";
+            command += "neg\n";
+            ofp << command;
             break;
         default:
             break;

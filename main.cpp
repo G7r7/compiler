@@ -28,11 +28,12 @@ int main(int argc, char const *argv[])
 
     advance(); // Initializing globals
     node N; 
+    ofp << ".start\n"; 
     while ((N = G()).type != node_eof) // Generating a new syntaxic tree until end of file 
     {
         gencode(N);  // Print that tree
     }
-    
+    ofp << "hald"; 
     
     fclose(fp); // Closing input file
     ofp.close(); // Clsing output file
