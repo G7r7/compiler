@@ -33,7 +33,7 @@ int main(int argc, char const *argv[])
     {
         gencode(N);  // Print that tree
     }
-    ofp << "hald"; 
+    ofp << "halt"; 
     
     fclose(fp); // Closing input file
     ofp.close(); // Clsing output file

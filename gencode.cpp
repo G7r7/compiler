@@ -11,12 +11,12 @@ void gencode(node N){
             break;
         case node_minus_unary:
             command = "push 0\n";
-            command += std::to_string(N.children[0].value);
-            command += "\nsub\n";
+            gencode(N.children[0]);
+            command += "sub\n";
             ofp << command;
             break;
         case node_not:
-            command = std::to_string(N.children[0].value) + "\n";
+            gencode(N.children[0]);
             command += "neg\n";
             ofp << command;
             break;
