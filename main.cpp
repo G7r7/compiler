@@ -29,9 +29,12 @@ int main(int argc, char const *argv[])
     advance(); // Initializing globals
     node N; 
     ofp << ".start\n"; 
-    while ((N = G()).type != node_eof) // Generating a new syntaxic tree until end of file 
+    while (next.type != tok_eof) // Generating a new syntaxic tree until end of file 
     {
+        N = G();
+        accept(tok_semi_colon);
         gencode(N);  // Print that tree
+        ofp << "dbg\n"; 
     }
     ofp << "halt"; 
     

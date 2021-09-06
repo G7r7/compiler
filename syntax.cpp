@@ -53,11 +53,7 @@ node A() { // Constantes
         accept(tok_right_parenthesis);
         return N;
     } else {
-        //erreur
-        accept(tok_eof);
-        node N;
-        N.type = node_eof;
-        return N;
+        erreur("Atome attendu");
     }    
 }
 
