@@ -5,12 +5,19 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Test",
+            "name": "g++.exe - debug compiler.exe",
+            "type": "cppdbg",
             "request": "launch",
-            "program": "compiler.exe",
-            "args": [ "program.cmm" ],
+            "program": "${workspaceFolder}/compiler.exe",
+            "args": [
+                "program.cmm",
+                "output" 
+            ],
             "stopAtEntry": false,
-            "cwd": "${fileDirname}",
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": false,
+            "preLaunchTask": "build debug"
         }
     ]
 }
