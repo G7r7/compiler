@@ -10,7 +10,8 @@
             "args": [
                 "*.cpp",
                 "-o",
-                "compiler.exe"
+                "compiler.exe",
+                "-std=c++11"
             ],
             "problemMatcher": [],
             "group": {

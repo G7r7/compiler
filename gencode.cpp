@@ -10,14 +10,14 @@ void gencode(node N){
             ofp << command;
             break;
         case node_minus_unary:
-            command = "push 0\n";
+            ofp << "push 0\n";
             gencode(N.children[0]);
-            command += "sub\n";
+            command = "sub\n";
             ofp << command;
             break;
         case node_not:
             gencode(N.children[0]);
-            command += "neg\n";
+            command = "not\n";
             ofp << command;
             break;
         default:
