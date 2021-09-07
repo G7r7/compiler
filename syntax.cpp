@@ -54,6 +54,12 @@ node A() { // Constantes
         return N;
     } else {
         erreur("Atome attendu");
+        node N;
+        N.type = node_cst;
+        N.value = 0;
+        N.line = current.line;
+        advance();
+        return N;
     }    
 }
 
