@@ -58,7 +58,8 @@ void advance(void) {
                 }else{
                     ungetc(character,fp);
                     erreur(" | manquant ligne : " + std::to_string(line));
-                    next.type = tok_error;
+                    //reprise sur erreur
+                    next.type = tok_or;
                 }
             }
             break; 
