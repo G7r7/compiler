@@ -13,7 +13,7 @@ struct operator_properties {
     Nodes node;
 };
 
-std::map<Tokens, operator_properties> operators_table = {
+std::map<int, operator_properties> operators_table = {
   { tok_equals, { 1, 1, node_assign } },
   { tok_or, { 2, 3, node_or } },
   { tok_and, { 3, 4, node_and } },

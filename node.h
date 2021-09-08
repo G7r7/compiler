@@ -30,7 +30,8 @@ enum Nodes {
     node_divide,
     node_modulo,
     node_not,
-    node_eof
+    node_eof,
+    node_block
 };
 
 #endif
