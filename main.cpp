@@ -5,6 +5,7 @@
 #include <fstream>
 #include "gencode.h"
 #include "syntax.h"
+#include "operator_properties.h"
 
 FILE *fp;
 std::ofstream ofp;
@@ -17,6 +18,7 @@ std::unordered_map<int,std::string> id_map;
 
 int main(int argc, char const *argv[])
 {
+    std::cout << operators_table.at(tok_plus).left_priority;
     fp = fopen(argv[1], "r"); // Opening input file
     if(fp == NULL) {
         perror("Can't open file");

@@ -4,7 +4,7 @@
 #include "node.h"
 
 node G();
-node E();
+node E(size_t min_priority);
 node P();
 node A();
 node S();

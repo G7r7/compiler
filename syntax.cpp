@@ -7,11 +7,17 @@
 /* Returns the syntaxic node tree in function of the current token
 */
 node G() {
-    return E();
+    return E(0);
 }
 
-node E() { // Expressions
-    return P();
+node E(size_t min_prority) { // Expressions
+    node N = P();
+    while (!eof())
+    {
+        
+    }
+    
+    return N;
 }
 
 node P() { // Préfixes
@@ -49,7 +55,7 @@ node A() { // Constantes
         N.line = current.line;
         return N;
     } else if (check(tok_left_parenthesis)) {
-        node N = E();
+        node N = E(0);
         accept(tok_right_parenthesis);
         return N;
     } else {

@@ -15,6 +15,7 @@ struct node
 enum Nodes {
     node_cst,
     node_minus_unary,
+    node_sum,
     node_not,
     node_eof
 };
