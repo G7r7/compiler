@@ -8,7 +8,7 @@
 /* Returns the syntaxic node tree in function of the current token
 */
 node G() {
-    return E(0);
+    return I();
 }
 
 node E(size_t min_prority) { // Expressions
@@ -45,7 +45,9 @@ node I() { //Instructions
         return N;
     } else  {
         // Expressions (drop) to do
-        node N;
+        node N = node{node_drop};
+        N.children.push_back(E(0));
+        accept(tok_semi_colon);
         return N;
     }
 }

@@ -31,7 +31,9 @@ enum Nodes {
     node_modulo,
     node_not,
     node_eof,
-    node_block
+    node_block,
+    node_drop,
+    node_print
 };
 
 #endif
