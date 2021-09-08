@@ -18,7 +18,14 @@ std::unordered_map<int,std::string> id_map;
 
 int main(int argc, char const *argv[])
 {
-    std::cout << operators_table.at(tok_plus).left_priority;
+    
+    // auto search = operators_table.find(tok_left_parenthesis);
+    // if(search != operators_table.end()) {
+    //     std::cout << (search->second.left_priority);
+    // } else {
+    //     std::cout << "Non !" << std::endl;
+    // }
+    
     fp = fopen(argv[1], "r"); // Opening input file
     if(fp == NULL) {
         perror("Can't open file");
