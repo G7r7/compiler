@@ -33,7 +33,7 @@ int main(int argc, char const *argv[])
     while (next.type != tok_eof) // Generating a new syntaxic tree until end of file 
     {
         N = G();
-        accept(tok_semi_colon);
+        //accept(tok_semi_colon);
         gencode(N);  // Print that tree
         ofp << "dbg\n"; 
     }

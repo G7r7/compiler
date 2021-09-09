@@ -4,6 +4,7 @@
 
 void gencode(node N){
     std::string command;
+    printf("%d",N.type);
     switch (N.type) {
         case node_cst:
             command = "push " + std::to_string(N.value) + "\n";
@@ -20,6 +21,49 @@ void gencode(node N){
             command = "not\n";
             ofp << command;
             break;
+        case node_sum:
+            gencode(N.children[0]);
+            gencode(N.children[1]);
+            ofp << "add\n";
+            break;
+        case node_sub:
+            gencode(N.children[0]);
+            gencode(N.children[1]);
+            ofp << "sub\n";
+            break;
+        case node_mul:
+            gencode(N.children[0]);
+            gencode(N.children[1]);
+            ofp << "mul\n";
+            break;
+        case node_divide:
+            gencode(N.children[0]);
+            gencode(N.children[1]);
+            ofp << "div\n";
+            break;
+        case node_modulo:
+            gencode(N.children[0]);
+            gencode(N.children[1]);
+            ofp << "mod\n";
+            break;
+        case node_drop:
+            gencode(N.children[0]);
+            //afficher drop  
+            break;
+        case node_block:
+            gencode(N.children[0]);
+            break;
+        /*
+        Nodes à faire
+    node_or,
+    node_and,
+    node_equals_to,
+    node_not_equals_to,
+    node_less_than,
+    node_more_than,
+    node_less_or_equal,
+    node_more_or_equal,
+        */
         default:
             break;
     }

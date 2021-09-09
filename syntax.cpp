@@ -39,9 +39,11 @@ node I() { //Instructions
         while(!check(tok_right_curly))
             N.children.push_back(I());
         return N;
-    } else if (false) {
+    } else if (check(tok_print)) {
         // Print (debug) to do
-        node N;
+        node N = node{node_print};          
+        N.children.push_back(E(0));
+        accept(tok_semi_colon);
         return N;
     } else  {
         // Expressions (drop) to do

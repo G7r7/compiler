@@ -8,5 +8,6 @@ node E(size_t min_priority);
 node P();
 node A();
 node S();
+node I();
 
 #endif

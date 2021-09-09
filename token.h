@@ -44,7 +44,8 @@ enum Tokens {
     tok_left_curly,
     tok_right_curly,
     tok_eof,
-    tok_error
+    tok_error,
+    tok_print
 };
 
 #endif

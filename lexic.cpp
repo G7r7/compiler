@@ -147,6 +147,8 @@ void advance(void) {
                         next.type = tok_continue;
                     }else if(value.compare("return") == 0){
                         next.type = tok_return;
+                    }else if(value.compare("print") == 0){
+                        next.type = tok_print;
                     }else {
                         //c'est un identificateur
                         //hash-map index_id,value
