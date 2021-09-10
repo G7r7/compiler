@@ -1,5 +1,5 @@
 #ifndef OP_PROP
-#define OP_PRO
+#define OP_PROP
 
 #include <stdlib.h>
 #include "node.h"

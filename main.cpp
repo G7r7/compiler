@@ -14,6 +14,7 @@ token next;
 int index_id = 0;
 int line = 1;
 std::unordered_map<int,std::string> id_map;
+int nvar = 0;
 
 int main(int argc, char const *argv[])
 {

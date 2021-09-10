@@ -17,5 +17,6 @@ extern token next;
 extern int index_id;
 extern int line;
 extern std::unordered_map<int,std::string> id_map;
+extern int nvar;
 
 #endif

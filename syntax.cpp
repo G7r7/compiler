@@ -45,7 +45,19 @@ node I() { //Instructions
         N.children.push_back(E(0));
         accept(tok_semi_colon);
         return N;
-    } else  {
+    } else if(check(tok_int)){
+        node N = node{node_seq};
+        accept(tok_id);
+        N.children.push_back(node{node_decl,current.value});
+
+        while(!check(tok_semi_colon)){
+            accept(tok_comma);
+            accept(tok_id);
+            N.children.push_back(node{node_decl,current.value});
+            //to check
+        }
+        return N;
+    } else {
         // Expressions (drop) to do
         node N = node{node_drop};
         N.children.push_back(E(0));

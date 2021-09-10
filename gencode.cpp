@@ -4,7 +4,7 @@
 
 void gencode(node N){
     std::string command;
-    printf("%d",N.type);
+
     switch (N.type) {
         case node_cst:
             command = "push " + std::to_string(N.value) + "\n";
@@ -48,10 +48,12 @@ void gencode(node N){
             break;
         case node_drop:
             gencode(N.children[0]);
-            //afficher drop  
+            ofp << "drop\n";  
             break;
         case node_block:
-            gencode(N.children[0]);
+            for(auto child:N.children){
+                gencode(child);
+            }
             break;
         /*
         Nodes à faire

@@ -10,6 +10,7 @@ struct node
     int value;
     std::vector<node> children;
     int line;
+    int stack_index;
 };
 
 enum Nodes {
@@ -33,7 +34,10 @@ enum Nodes {
     node_eof,
     node_block,
     node_drop,
-    node_print
+    node_print,
+    node_seq,
+    node_ref,
+    node_decl
 };
 
 #endif
