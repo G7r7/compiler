@@ -55,6 +55,15 @@ void gencode(node N){
                 gencode(child);
             }
             break;
+        case node_ref:
+            ofp << "get " << N.stack_index << "\n";
+            break;
+        case node_assign:
+            if(N.children[0].type == node_ref){
+                gencode(N.children[1]);
+                ofp << "dup \n";
+                ofp << "set " << N.children[0].stack_index << "\n"; 
+            }
         /*
         Nodes à faire
     node_or,

@@ -35,6 +35,7 @@ int main(int argc, char const *argv[])
     {
         N = G();
         //accept(tok_semi_colon);
+        ofp << "resn " << nvar << "\n";
         gencode(N);  // Print that tree
         ofp << "dbg\n"; 
     }
