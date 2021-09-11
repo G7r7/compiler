@@ -5,7 +5,7 @@
 #include <vector>
 #include <map>
 
-std::vector<std::map<int,symbol>> symbols_table; 
+extern std::vector<std::map<int,symbol>> symbols_table; 
 
 void AS(node root);
 symbol declare(int id);

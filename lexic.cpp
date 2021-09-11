@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include "lexic.h"
 #include "globals.h"
+#include <algorithm>
 
 void erreur(std::string msg) {
     std::cout << msg <<std::endl;
@@ -152,10 +153,21 @@ void advance(void) {
                     }else {
                         //c'est un identificateur
                         //hash-map index_id,value
-                        id_map[index_id] = value; // Couplage du nom de la variable à un indentifiant unique
+                        auto it = std::find_if(std::begin(id_map), std::end(id_map),[value](auto& p) { 
+                            return (p.second.compare(value) == 0); }
+                            );
+
+                        //printf("%d",index_id);
+                        //std::cout << value << std::endl;
+                        if (it == std::end(id_map)){
+                            id_map[index_id] = value; // Couplage du nom de la variable à un indentifiant unique
+                            
+                            next.value = index_id;
+                            index_id++;
+                        }else{
+                            next.value = it->first;
+                        }
                         
-                        next.value = index_id;
-                        index_id++;
                         next.type = tok_id;
                     }
 

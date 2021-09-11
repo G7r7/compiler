@@ -5,6 +5,7 @@
 #include <fstream>
 #include "gencode.h"
 #include "syntax.h"
+#include "semantic.h"
 
 FILE *fp;
 std::ofstream ofp;
@@ -15,6 +16,7 @@ int index_id = 0;
 int line = 1;
 std::unordered_map<int,std::string> id_map;
 int nvar = 0;
+std::vector<std::map<int,symbol>> symbols_table;
 
 int main(int argc, char const *argv[])
 {
@@ -31,14 +33,15 @@ int main(int argc, char const *argv[])
     advance(); // Initializing globals
     node N; 
     ofp << ".start\n"; 
-    while (next.type != tok_eof) // Generating a new syntaxic tree until end of file 
-    {
+    //while (next.type != tok_eof) // Generating a new syntaxic tree until end of file 
+    //{
         N = G();
         //accept(tok_semi_colon);
+        
+        AS(N);
         ofp << "resn " << nvar << "\n";
         gencode(N);  // Print that tree
-        ofp << "dbg\n"; 
-    }
+    //}
     ofp << "halt"; 
     
     fclose(fp); // Closing input file
