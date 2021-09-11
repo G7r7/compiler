@@ -104,7 +104,13 @@ node A() { // Constantes
         node N = E(0);
         accept(tok_right_parenthesis);
         return N;
-    } else {
+    } else if(check(tok_id)){
+        node N = node{node_ref};
+
+        N.value = current.value;
+        N.line = current.line;
+        return N;
+    }else {
         erreur("Atome attendu");
         node N;
         N.type = node_cst;

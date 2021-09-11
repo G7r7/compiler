@@ -64,6 +64,11 @@ void gencode(node N){
                 ofp << "dup \n";
                 ofp << "set " << N.children[0].stack_index << "\n"; 
             }
+        case node_print:
+            //printf("%d\n",N.children[0].type);
+            gencode(N.children[0]);
+            ofp << "dbg\n"; 
+            break;
         /*
         Nodes à faire
     node_or,
