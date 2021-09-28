@@ -64,22 +64,52 @@ void gencode(node N){
                 ofp << "dup \n";
                 ofp << "set " << N.children[0].stack_index << "\n"; 
             }
+            break;
         case node_print:
             //printf("%d\n",N.children[0].type);
             gencode(N.children[0]);
             ofp << "dbg\n"; 
             break;
-        /*
-        Nodes à faire
-    node_or,
-    node_and,
-    node_equals_to,
-    node_not_equals_to,
-    node_less_than,
-    node_more_than,
-    node_less_or_equal,
-    node_more_or_equal,
-        */
+        case node_or:
+            gencode(N.children[0]);
+            gencode(N.children[1]);
+            ofp << "or\n";
+            break;
+        case node_and:
+            gencode(N.children[0]);
+            gencode(N.children[1]);
+            ofp << "and\n";
+            break;
+        case node_equals_to:
+            gencode(N.children[0]);
+            gencode(N.children[1]);
+            ofp << "cmpeq\n";
+            break;
+        case node_not_equals_to:
+            gencode(N.children[0]);
+            gencode(N.children[1]);
+            ofp << "cmpne\n";
+            break;
+        case node_less_than:
+            gencode(N.children[0]);
+            gencode(N.children[1]);
+            ofp << "cmplt\n";
+            break;
+        case node_more_than:
+            gencode(N.children[0]);
+            gencode(N.children[1]);
+            ofp << "cmpgt\n";
+            break;
+        case node_less_or_equal:
+            gencode(N.children[0]);
+            gencode(N.children[1]);
+            ofp << "cmple\n";
+            break;
+        case node_more_or_equal:
+            gencode(N.children[0]);
+            gencode(N.children[1]);
+            ofp << "cmpge\n";
+            break;
         default:
             break;
     }
