@@ -1,6 +1,7 @@
 #include "gencode.h"
 #include "globals.h"
-#include "node.h" 
+#include "node.h"
+#include "lexic.h"
 
 void gencode(node N){
     std::string command;
@@ -109,6 +110,53 @@ void gencode(node N){
             gencode(N.children[0]);
             gencode(N.children[1]);
             ofp << "cmpge\n";
+            break;
+        case node_cond:
+            {
+                int l1 = nlabel;
+                nlabel++;
+                int l2 = nlabel;
+                nlabel++;
+                gencode(N.children[0]);
+                ofp << "jumpf l" << l1 << "\n";
+                gencode(N.children[1]);
+                ofp << "jump l" << l2 << "\n";            
+                ofp << ".l" << l1 << "\n";
+                if(N.children.size() >= 3)
+                    gencode(N.children[2]);
+                ofp << ".l" << l2 << "\n";
+            }
+            break;
+        case node_loop:
+            {
+                int l1 = nlabel;
+                nlabel++;
+                int l2 = nlabel;
+                nlabel++;
+                labels.push_back({l1,l2});
+                ofp << ".l" << l1 << "\n";
+                
+                gencode(N.children[0]);
+                ofp << "jump l" << l1 << "\n";
+                ofp << ".l" << l2 << "\n";
+                labels.pop_back();
+            }
+            break;
+        case node_break:
+            if(labels.size() == 0){
+                erreur("Erreur symbole break non valide \n");
+            }else{
+                pairs label = labels[labels.size() - 1];
+                ofp << "jump l" << label.second << "\n";
+            }
+            break;
+        case node_continue:
+            if(labels.size() == 0){
+                erreur("Erreur symbole continue non valide \n");
+            }else{
+                pairs label = labels[labels.size() - 1];
+                ofp << "jump l" << label.first << "\n";
+            }
             break;
         default:
             break;

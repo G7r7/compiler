@@ -37,7 +37,11 @@ enum Nodes {
     node_print,
     node_seq,
     node_ref,
-    node_decl
+    node_decl,
+    node_cond,
+    node_loop,
+    node_break,
+    node_continue
 };
 
 #endif

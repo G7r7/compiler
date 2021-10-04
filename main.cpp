@@ -16,7 +16,9 @@ int index_id = 0;
 int line = 1;
 std::unordered_map<int,std::string> id_map;
 int nvar = 0;
+int nlabel = 0;
 std::vector<std::map<int,symbol>> symbols_table;
+std::vector<pairs> labels;
 
 int main(int argc, char const *argv[])
 {

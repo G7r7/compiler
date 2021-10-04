@@ -6,9 +6,11 @@
 #include "lexic.h"
 #include "globals.h"
 #include <algorithm>
+#include <sstream>
 
 void erreur(std::string msg) {
     std::cout << msg <<std::endl;
+    exit(0);
 }
 
 /* Set the current token to next token then detects the next token.
@@ -194,8 +196,11 @@ bool check(int type) {
 /* Throws an error if the next token is not of the given type
 */
 void accept(int type) {
-    if(!check(type))
-        erreur("Erreur\n");
+    if(!check(type)){
+        std::stringstream msg;
+        msg << "Erreur " << type << " attendu " << next.type << " trouvé" << "\n";
+        erreur(msg.str());
+    }
 }
 
 /* Is the next token an end of file token ?

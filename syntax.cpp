@@ -56,6 +56,32 @@ node I() { //Instructions
             N.children.push_back(node{node_decl,current.value});
             //to check
         }
+        return N;    
+    }else if(check(tok_if)){
+        accept(tok_left_parenthesis);
+        node N = node{node_cond};
+        
+        N.children.push_back(E(0));
+        accept(tok_right_parenthesis);       
+        N.children.push_back(I());
+
+        if(next.type == tok_else){
+            N.children.push_back(I());
+        }
+        return N;
+    } else if(check(tok_while)){
+        accept(tok_left_parenthesis);        
+        node N = node{node_loop};
+        node cond = node{node_cond};
+        node node_break = node{node_break};
+        
+        N.children.push_back(cond);
+
+        cond.children.push_back(E(0));
+        accept(tok_right_parenthesis); 
+        cond.children.push_back(I());
+        cond.children.push_back(node_break);
+
         return N;
     } else {
         // Expressions (drop) to do
