@@ -41,9 +41,9 @@ int main(int argc, char const *argv[])
     AS(N); 
     gencode(N);  // Print that tree
     ofp << ".start\n"; 
-    ofp << "prep main";
-    ofp << "call 0";
-    ofp << "halt"; 
+    ofp << "prep main\n";
+    ofp << "call 0\n";
+    ofp << "halt\n"; 
     
     fclose(fp); // Closing input file
     ofp.close(); // Clsing output file

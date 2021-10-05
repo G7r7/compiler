@@ -24,6 +24,7 @@ void AS(node N){
         end_scope();
         break;
     case node_function:
+        start_scope();
         S = declare(N.value);
         S.type = symbol_function;
         nvar = 0;
@@ -31,6 +32,7 @@ void AS(node N){
             AS(child);
         }
         N.nvar = nvar;
+        end_scope();
         break;
     default:
         for(node child:N.children){
