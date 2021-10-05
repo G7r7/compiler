@@ -73,15 +73,12 @@ node I() { //Instructions
         accept(tok_left_parenthesis);        
         node N = node{node_loop};
         node cond = node{node_cond};
-        node node_break = node{node_break};
-        
-        N.children.push_back(cond);
-
         cond.children.push_back(E(0));
         accept(tok_right_parenthesis); 
         cond.children.push_back(I());
-        cond.children.push_back(node_break);
-
+        cond.children.push_back(node{node_break});
+        N.children.push_back(cond);
+        
         return N;
     } else {
         // Expressions (drop) to do
