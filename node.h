@@ -11,6 +11,7 @@ struct node
     std::vector<node> children;
     int line;
     int stack_index;
+    int nvar;
 };
 
 enum Nodes {
@@ -41,7 +42,8 @@ enum Nodes {
     node_cond,
     node_loop,
     node_break,
-    node_continue
+    node_continue,
+    node_function
 };
 
 #endif

@@ -36,16 +36,13 @@ int main(int argc, char const *argv[])
 
     advance(); // Initializing globals
     node N; 
+    
+    N = G();     
+    AS(N); 
+    gencode(N);  // Print that tree
     ofp << ".start\n"; 
-    //while (next.type != tok_eof) // Generating a new syntaxic tree until end of file 
-    //{
-        N = G();
-        //accept(tok_semi_colon);
-        
-        AS(N);
-        ofp << "resn " << nvar << "\n";
-        gencode(N);  // Print that tree
-    //}
+    ofp << "prep main";
+    ofp << "call 0";
     ofp << "halt"; 
     
     fclose(fp); // Closing input file

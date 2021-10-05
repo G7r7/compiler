@@ -9,7 +9,7 @@
                 "*.cpp",
                 "-o",
                 "compiler.exe",
-                "-std=c++11"
+                "-std=c++14"
             ],
             "problemMatcher": [],
             "group": "build"
@@ -23,7 +23,7 @@
                 "*.cpp",
                 "-o",
                 "compiler.exe",
-                "-std=c++11"
+                "-std=c++14"
             ],
             "problemMatcher": [],
             "group": "build"

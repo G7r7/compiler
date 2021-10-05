@@ -158,6 +158,13 @@ void gencode(node N){
                 ofp << "jump l" << label.first << "\n";
             }
             break;
+        case node_function:
+            ofp << "." << id_map[N.value] << std::endl;
+            ofp << "resn " << N.nvar << std::endl;
+            gencode(N.children[0]);
+            ofp << "push 0\n";
+            ofp << "ret\n";
+            break;
         default:
             break;
     }

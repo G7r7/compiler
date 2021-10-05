@@ -23,6 +23,15 @@ void AS(node N){
         }
         end_scope();
         break;
+    case node_function:
+        S = declare(N.value);
+        S.type = symbol_function;
+        nvar = 0;
+        for(node child:N.children){
+            AS(child);
+        }
+        N.nvar = nvar;
+        break;
     default:
         for(node child:N.children){
             AS(child);

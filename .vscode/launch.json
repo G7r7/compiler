@@ -15,6 +15,7 @@
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
+            "miDebuggerPath": "gdb",
             "environment": [],
             "externalConsole": false,
             "preLaunchTask": "build debug"

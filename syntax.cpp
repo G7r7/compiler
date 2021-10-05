@@ -8,7 +8,19 @@
 /* Returns the syntaxic node tree in function of the current token
 */
 node G() {
-    return I();
+    return F();
+}
+
+node F(){
+    accept(tok_int);
+    accept(tok_id);
+    node N = node{node_function};
+    N.value = current.value;//nom de la fonction
+    accept(tok_left_parenthesis);
+    accept(tok_right_parenthesis);
+    N.children.push_back(I());
+
+    return N;
 }
 
 node E(size_t min_prority) { // Expressions
