@@ -141,7 +141,11 @@ node A() { // Constantes
         return N;
     } else if(check(tok_id)){
         node N = node{node_ref};
-
+        if(next.type == tok_left_parenthesis) { // Becomes a call node if there are parenthesis
+            accept(tok_left_parenthesis);
+            accept(tok_right_parenthesis);
+            N.type = node_call;
+        }
         N.value = current.value;
         N.line = current.line;
         return N;

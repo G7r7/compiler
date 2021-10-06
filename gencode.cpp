@@ -165,6 +165,10 @@ void gencode(node N){
             ofp << "push 0\n";
             ofp << "ret\n";
             break;
+        case node_call:
+            ofp << "prep " << id_map[N.value] << std::endl;
+            ofp << "call 0" << std::endl;
+            break;
         default:
             break;
     }

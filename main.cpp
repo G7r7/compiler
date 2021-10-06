@@ -37,9 +37,13 @@ int main(int argc, char const *argv[])
     advance(); // Initializing globals
     node N; 
     
-    N = G();     
-    N = AS(N);
-    gencode(N);  // Print that tree
+    while (next.type != tok_eof)
+    {
+        N = G();     
+        N = AS(N);
+        gencode(N);  // Print that tree
+    }
+
     ofp << ".start\n"; 
     ofp << "prep main\n";
     ofp << "call 0\n";

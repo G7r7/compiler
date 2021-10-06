@@ -8,7 +8,7 @@
 extern std::vector<std::map<int,symbol>> symbols_table; 
 
 node AS(node root);
-symbol declare(int id);
+symbol declare(int id, int type);
 symbol search(int id);
 void start_scope();
 void end_scope();
