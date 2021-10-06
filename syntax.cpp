@@ -161,6 +161,8 @@ node A() { // Constantes
             accept(tok_left_parenthesis);
             if (next.type != tok_right_parenthesis)
             {
+                N.type = node_call;
+                N.value = current.value;
                 N.children.push_back(E(0));
                 while (check(tok_comma))
                 {
@@ -168,9 +170,10 @@ node A() { // Constantes
                 }   
             }
             accept(tok_right_parenthesis);
-            N.type = node_call;
+        }else{
+            N.value = current.value;
         }
-        N.value = current.value;
+        
         N.line = current.line;
         return N;
     }else {
