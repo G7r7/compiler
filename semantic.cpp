@@ -50,7 +50,9 @@ node AS(node N){
             msg << "Erreur : " << id_map[N.value] << " cannot be used as a function.\n";
             erreur(msg.str());
         }
-        
+        for(int i = 0; i < N.children.size();i++){
+            N.children[i] = AS(N.children[i]);
+        }
         break;
     default:
 

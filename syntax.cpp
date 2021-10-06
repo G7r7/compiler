@@ -17,6 +17,22 @@ node F(){
     node N = node{node_function};
     N.value = current.value;//nom de la fonction
     accept(tok_left_parenthesis);
+        if (next.type != tok_right_parenthesis)
+        {
+            if(check(tok_int)){ // Function parameters parsing
+                node NSeq = node{node_seq};
+                accept(tok_id);
+                NSeq.children.push_back(node{node_decl,current.value});
+
+                while(next.type != tok_right_parenthesis){
+                    accept(tok_comma);
+                    accept(tok_int);
+                    accept(tok_id);
+                    NSeq.children.push_back(node{node_decl,current.value});
+                }
+                N.children.push_back(NSeq);
+            }
+        }
     accept(tok_right_parenthesis);
     N.children.push_back(I());
 
@@ -143,6 +159,14 @@ node A() { // Constantes
         node N = node{node_ref};
         if(next.type == tok_left_parenthesis) { // Becomes a call node if there are parenthesis
             accept(tok_left_parenthesis);
+            if (next.type != tok_right_parenthesis)
+            {
+                N.children.push_back(E(0));
+                while (check(tok_comma))
+                {
+                    N.children.push_back(E(0));
+                }   
+            }
             accept(tok_right_parenthesis);
             N.type = node_call;
         }

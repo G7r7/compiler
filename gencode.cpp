@@ -167,7 +167,15 @@ void gencode(node N){
             break;
         case node_call:
             ofp << "prep " << id_map[N.value] << std::endl;
-            ofp << "call 0" << std::endl;
+            for(auto child:N.children){
+                gencode(child);
+            }
+            ofp << "call " << N.children.size() << std::endl;
+            break;
+        case node_seq:
+            for(auto child:N.children){
+                gencode(child);
+            }
             break;
         default:
             break;
