@@ -2,7 +2,7 @@
 #include "globals.h"
 #include "lexic.h"
 
-void AS(node N){
+node AS(node N){
     symbol S;
 
     switch (N.type)
@@ -40,6 +40,7 @@ void AS(node N){
         }
         break;
     }
+    return N;
 }
 
 symbol declare(int id){

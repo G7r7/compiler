@@ -38,7 +38,7 @@ int main(int argc, char const *argv[])
     node N; 
     
     N = G();     
-    AS(N); 
+    N = AS(N); 
     gencode(N);  // Print that tree
     ofp << ".start\n"; 
     ofp << "prep main\n";
