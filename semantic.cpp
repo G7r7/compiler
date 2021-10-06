@@ -1,19 +1,26 @@
 #include "semantic.h"
 #include "globals.h"
 #include "lexic.h"
+#include <sstream>
 
-void AS(node N){
+node AS(node N){
     symbol S;
 
     switch (N.type)
     {
     case node_decl:
-        S = declare(N.value);
+        S = declare(N.value,symbol_variable);
         //S.index = nvar;
         nvar++;
         break;
     case node_ref:
         S = search(N.value);
+        if(S.type != symbol_variable){
+            std::stringstream msg;
+            msg << id_map[N.value] << " cannot be use as a function\n";
+            erreur(msg.str());
+        }
+            
         N.stack_index = S.index;
         break;
     case node_block:
@@ -24,13 +31,23 @@ void AS(node N){
         end_scope();
         break;
     case node_function:
-        S = declare(N.value);
-        S.type = symbol_function;
         nvar = 0;
+        start_scope();
+        S = declare(N.value,symbol_function);
+        S.type = symbol_function;
         for(node child:N.children){
             AS(child);
         }
+        end_scope();
         N.nvar = nvar;
+        break;
+    case node_call:
+        S = search(N.value);
+        if(S.type != symbol_function)
+            erreur("");
+        for(node child:N.children){
+            AS(child);
+        }
         break;
     default:
         for(node child:N.children){
@@ -38,10 +55,11 @@ void AS(node N){
         }
         break;
     }
+    return N;
 }
 
-symbol declare(int id){
-    symbol sy = symbol{nvar};
+symbol declare(int id,int type){
+    symbol sy = symbol{nvar,type};
     symbols_table[symbols_table.size() - 1][id] = sy;
 
     return sy;
@@ -57,7 +75,7 @@ symbol search(int id){
             return search->second;
         }
     }
-    erreur("Undefined variable \n");
+    erreur("Undefined identifier \n");
     exit(-1);
 }
 void start_scope(){

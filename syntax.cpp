@@ -140,10 +140,17 @@ node A() { // Constantes
         accept(tok_right_parenthesis);
         return N;
     } else if(check(tok_id)){
-        node N = node{node_ref};
-
+        node N;
+        if(next.type == tok_left_parenthesis){
+            accept(tok_left_parenthesis);
+            N.type = node_call;
+            accept(tok_right_parenthesis);
+        }else{
+            N.type = node_ref;
+        }
         N.value = current.value;
         N.line = current.line;
+
         return N;
     }else {
         erreur("Atome attendu");

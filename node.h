@@ -43,7 +43,8 @@ enum Nodes {
     node_loop,
     node_break,
     node_continue,
-    node_function
+    node_function,
+    node_call
 };
 
 #endif
