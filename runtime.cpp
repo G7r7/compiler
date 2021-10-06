@@ -35,7 +35,7 @@ int readNb() {
     while((c = getchar()) &&  c <= '0' && c >= '9') {
         digitsCounter++;
         int digit = c - '0';
-        nb += digit*pow((float)10, (float)digit);
+        nb += (int)(digit*pow((float)10, (float)digit));
     }
     return nb;
 }
