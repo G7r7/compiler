@@ -1,25 +1,13 @@
-int myfunc(int nb) {
+int myfunc(int nb,int glis) {
     int hell;
     hell = 666;
     print hell;
-    print 667;
     print nb;
+    print glis;
 }
 
 int main(){ 
     int count;
-    count = 0;
-    int count2;
-    count2 = 3;
-
-    if(count == 0){
-        print count;
-    }
-
-    if(count2 == 3){
-        print count2;
-    }
-
-    myfunc(count2);
-
+    count = 10;
+    myfunc(count,(5-2));
 }

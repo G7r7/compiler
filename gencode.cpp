@@ -161,7 +161,10 @@ void gencode(node N){
         case node_function:
             ofp << "." << id_map[N.value] << std::endl;
             ofp << "resn " << N.nvar << std::endl;
-            gencode(N.children[0]);
+            if(N.children.size() == 2)
+                gencode(N.children[1]);
+            else
+                gencode(N.children[0]);
             ofp << "push 0\n";
             ofp << "ret\n";
             break;

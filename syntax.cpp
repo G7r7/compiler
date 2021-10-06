@@ -15,12 +15,13 @@ node F(){
     accept(tok_int);
     accept(tok_id);
     node N = node{node_function};
+    node NSeq = node{node_seq};
     N.value = current.value;//nom de la fonction
     accept(tok_left_parenthesis);
         if (next.type != tok_right_parenthesis)
         {
             if(check(tok_int)){ // Function parameters parsing
-                node NSeq = node{node_seq};
+                
                 accept(tok_id);
                 NSeq.children.push_back(node{node_decl,current.value});
 
@@ -30,12 +31,12 @@ node F(){
                     accept(tok_id);
                     NSeq.children.push_back(node{node_decl,current.value});
                 }
-                N.children.push_back(NSeq);
             }
+            N.children.push_back(NSeq); 
         }
     accept(tok_right_parenthesis);
     N.children.push_back(I());
-
+       
     return N;
 }
 
