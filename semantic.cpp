@@ -18,25 +18,28 @@ node AS(node N){
         break;
     case node_block:
         start_scope();
-        for(node child:N.children){
-            AS(child);
+
+        for(int i = 0; i < N.children.size();i++){
+            N.children[i] = AS(N.children[i]);
         }
         end_scope();
         break;
     case node_function:
-        start_scope();
         S = declare(N.value);
-        S.type = symbol_function;
+        start_scope();
         nvar = 0;
-        for(node child:N.children){
-            AS(child);
+        S.type = symbol_function;
+
+        for(int i = 0; i < N.children.size();i++){
+            N.children[i] = AS(N.children[i]);
         }
         N.nvar = nvar;
         end_scope();
         break;
     default:
-        for(node child:N.children){
-            AS(child);
+
+        for(int i = 0; i < N.children.size();i++){
+            N.children[i] = AS(N.children[i]);
         }
         break;
     }

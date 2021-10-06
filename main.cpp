@@ -33,12 +33,12 @@ int main(int argc, char const *argv[])
         perror("Can't open output file");
         return EXIT_FAILURE;
     }
-
+    symbols_table.push_back(std::map<int,symbol>());
     advance(); // Initializing globals
     node N; 
     
     N = G();     
-    N = AS(N); 
+    N = AS(N);
     gencode(N);  // Print that tree
     ofp << ".start\n"; 
     ofp << "prep main\n";
