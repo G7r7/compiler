@@ -24,4 +24,9 @@ int main(){
     for(i = 0; i < *pointeur; i = i + 1) {
         print i;
     }
+
+    do {
+        i = i - 1;
+        print i;
+    } while (i > 0);
 }

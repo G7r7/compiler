@@ -137,6 +137,25 @@ node I() { //Instructions
         Seq.children.push_back(Loop);
         
         return Seq;
+    } else if (check(tok_do)) {
+        node Instruction = I();
+        accept(tok_while);
+        accept(tok_left_parenthesis);
+        node Expression = E(0);
+        accept(tok_right_parenthesis);
+        accept(tok_semi_colon);
+        node Cond = node{node_cond};
+        node Loop = node{node_loop};
+        node Break = node{node_break};
+        node Seq = node{node_seq};
+        Cond.children.push_back(Expression);
+        Cond.children.push_back(Instruction);
+        Cond.children.push_back(Break);
+        Loop.children.push_back(Cond);
+        Seq.children.push_back(Instruction);
+        Seq.children.push_back(Loop);
+
+        return Seq;
     } else {
         // Expressions drop
         node N = node{node_drop};
