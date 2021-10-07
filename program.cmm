@@ -19,4 +19,9 @@ int main(){
     *pointeur = 12;
     print pointeur;
     print *pointeur;
+
+    int i;
+    for(i = 0; i < *pointeur; i = i + 1) {
+        print i;
+    }
 }

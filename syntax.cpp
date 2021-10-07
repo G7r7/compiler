@@ -109,8 +109,36 @@ node I() { //Instructions
         N.children.push_back(cond);
         
         return N;
+    } else if(check(tok_for)){
+        accept(tok_left_parenthesis);        
+        node E1 = E(0);
+        accept(tok_semi_colon);
+        node E2 = E(0);
+        accept(tok_semi_colon);
+        node E3 = E(0);
+        accept(tok_right_parenthesis);
+        node Instruction = I();
+        node Seq = node{node_seq};
+        node Drop = node{node_drop};
+        node Loop = node{node_loop};
+        node Cond = node{node_cond};
+        node Seq2 = node{node_seq};
+        node Break = node{node_break};
+        node Drop3 = node{node_drop};
+        Drop3.children.push_back(E3);
+        Seq2.children.push_back(Instruction);
+        Seq2.children.push_back(Drop3);
+        Cond.children.push_back(E2);
+        Cond.children.push_back(Seq2);
+        Cond.children.push_back(Break);
+        Loop.children.push_back(Cond);
+        Drop.children.push_back(E1);
+        Seq.children.push_back(Drop);
+        Seq.children.push_back(Loop);
+        
+        return Seq;
     } else {
-        // Expressions (drop) to do
+        // Expressions drop
         node N = node{node_drop};
         N.children.push_back(E(0));
         accept(tok_semi_colon);
