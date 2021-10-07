@@ -139,7 +139,12 @@ node P() { // Préfixes
         N.line = current.line;
         return N;
     }else if(check(tok_times)){
-
+        node A = P();
+        node N;
+        N.type = node_indirection;
+        N.children.push_back(A);
+        N.line = current.line;
+        return N;
     }else{
         return S();
     }
@@ -189,6 +194,20 @@ node A() { // Constantes
 }
 
 node S() { // Suffixes
-    return A();
+    node a = A();
+    while (check(tok_left_bracket))
+    {
+        node e = E(0);
+        accept(tok_right_bracket);
+        node I = node{node_indirection};
+        node plus = node{node_sum};
+        plus.children.push_back(a);
+        plus.children.push_back(e);
+        I.children.push_back(plus);
+        a = I;
+    }
+
+    return a;
+    
 }
 

@@ -9,5 +9,14 @@ int myfunc(int nb,int glis) {
 int main(){ 
     int count;
     count = 10;
-    myfunc(count,(5-2));
+    while(count > 0) {
+        myfunc(count,(5-2));
+        count = count - 1;
+    }
+
+    int pointeur;
+    pointeur = 20000;
+    *pointeur = 12;
+    print pointeur;
+    print *pointeur;
 }

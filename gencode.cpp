@@ -64,6 +64,11 @@ void gencode(node N){
                 gencode(N.children[1]);
                 ofp << "dup \n";
                 ofp << "set " << N.children[0].stack_index << "\n"; 
+            }else if(N.children[0].type == node_indirection){
+                gencode(N.children[1]);
+                ofp << "dup \n";
+                gencode(N.children[0].children[0]);
+                ofp << "write \n";
             }
             break;
         case node_print:
@@ -179,6 +184,10 @@ void gencode(node N){
             for(auto child:N.children){
                 gencode(child);
             }
+            break;
+        case node_indirection:
+            gencode(N.children[0]);
+            ofp << "read\n";
             break;
         default:
             break;
