@@ -94,7 +94,7 @@ node I() { //Instructions
         accept(tok_right_parenthesis);       
         N.children.push_back(I());
 
-        if(next.type == tok_else){
+        if(check(tok_else)){
             N.children.push_back(I());
         }
         return N;
@@ -156,7 +156,15 @@ node I() { //Instructions
         Seq.children.push_back(Loop);
 
         return Seq;
-    } else {
+    } else if(check(tok_break)){
+        node Break = node{node_break};
+        accept(tok_semi_colon);
+        return Break;
+    } else if(check(tok_continue)){
+        node cont = node{node_continue};
+        accept(tok_semi_colon);
+        return cont;
+    }else {
         // Expressions drop
         node N = node{node_drop};
         N.children.push_back(E(0));
