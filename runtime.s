@@ -1,5 +1,7 @@
 .start
-    prep start2
+    prep init
+    call 0
+    prep main
     call 0
     halt
 .putchar

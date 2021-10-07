@@ -20,20 +20,14 @@ int nlabel = 0;
 std::vector<std::map<int,symbol>> symbols_table;
 std::vector<pairs> labels;
 
-int main(int argc, char const *argv[])
-{
-    
-    fp = fopen(argv[1], "r"); // Opening input file
+
+int compileFile(const char* filename) {
+    fp = fopen(filename,"r");
     if(fp == NULL) {
         perror("Can't open file");
         return EXIT_FAILURE;
     }
-    ofp.open(argv[2]); // Opening output file
-    if(!ofp.is_open()){
-        perror("Can't open output file");
-        return EXIT_FAILURE;
-    }
-    symbols_table.push_back(std::map<int,symbol>());
+
     advance(); // Initializing globals
     node N; 
     
@@ -43,13 +37,42 @@ int main(int argc, char const *argv[])
         N = AS(N);
         gencode(N);  // Print that tree
     }
-
-    ofp << ".start\n"; 
-    ofp << "prep main\n";
-    ofp << "call 0\n";
-    ofp << "halt\n"; 
     
     fclose(fp); // Closing input file
-    ofp.close(); // Clsing output file
+    return 0;
+}
+
+int main(int argc, char const *argv[])
+{
+    ofp.open(argv[2]); // Opening output file
+    if(!ofp.is_open()){
+        perror("Can't open output file");
+        return EXIT_FAILURE;
+    }
+
+    // Adding getchar and putchar to 
+    symbols_table.push_back(std::map<int,symbol>());
+    declare(index_id,symbol_function);
+    id_map[index_id] = "putchar";
+    index_id++;
+    declare(index_id,symbol_function);
+    id_map[index_id] = "getchar";
+    index_id++;
+
+    compileFile("runtime.cmm"); // Compiling runtime.cmm program.
+    compileFile(argv[1]); // Compiling main program.
+
+    fp = fopen("runtime.s","r");
+    if(fp == NULL) {
+        perror("Can't open runtime.s file");
+        return EXIT_FAILURE;
+    }
+    int c;
+    while ((c = fgetc(fp)) != EOF)
+    {
+        ofp << (char) c;
+    }
+
+    ofp.close(); // Closing output file
     return 0;
 }

@@ -1,0 +1,15 @@
+int init() {
+    
+}
+
+int printNb(int n) { 
+    if (n != 0) {
+        int c;
+        c = n % 10;
+        n = n / 10;
+        printNb(n);
+        putchar(c + 48);
+    } else {
+        putchar(48);
+    }
+}
