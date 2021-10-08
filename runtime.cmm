@@ -18,21 +18,30 @@ int printNbL(int n) {
 }
 
 int init() {
-    int N;
-    N = *0;
-    *N = N+1;
-    int size_in_MB;
-    size_in_MB = 2;
-    int memory_cell_size_in_Bytes;
-    memory_cell_size_in_Bytes = 8;
-    int nb_of_memory_cells;
-    nb_of_memory_cells = size_in_MB*1024*1024/memory_cell_size_in_Bytes;
-    int end_of_block_address;
-    end_of_block_address = N + nb_of_memory_cells + 3;
-    printNbL(end_of_block_address);
-    *(N+1) = 0;
-    *(N+2) = nb_of_memory_cells;
-    *(end_of_block_address - 1) = nb_of_memory_cells;
+    int heapMB, cellBytes, nbHeapCells, nbBlockCells, heapStart, heapEnd;
+    heapStart = *0;
+    heapMB = 1;
+    cellBytes = 8;
+    nbHeapCells = heapMB*1024*1024/cellBytes;
+    nbBlockCells = nbHeapCells - 4;
+    heapEnd = heapStart + nbHeapCells;
+    *heapStart = heapStart + 1;
+
+    int pFirstBlock, pBlockOccupied, pSize1, pNextBlock, pSize2;
+    pFirstBlock = *heapStart;
+    pBlockOccupied = *heapStart;
+    pSize1 = pFirstBlock + 1;
+    pNextBlock = pSize1 + 1;
+    pSize2 = pNextBlock + nbBlockCells;
+
+    *pBlockOccupied = 0;
+    *pSize1 = nbBlockCells;
+    *pNextBlock = 0;
+    *pSize2 = nbBlockCells;
+    printNbL(*pBlockOccupied);
+    printNbL(*pSize1);
+    printNbL(*pNextBlock);
+    printNbL(*(pFirstBlock + 2 + *pSize1));
 }
 
 int free(int pointer) {

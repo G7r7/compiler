@@ -198,6 +198,7 @@ bool check(int type) {
 void accept(int type) {
     if(!check(type)){
         std::stringstream msg;
+        msg << "Ligne n°" << current.line << " : ";
         msg << "Erreur " << type << " attendu " << next.type << " trouvé" << "\n";
         erreur(msg.str());
     }
