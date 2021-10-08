@@ -1,9 +1,9 @@
 int myfunc(int nb,int glis) {
     int hell;
     hell = 666;
-    print hell;
-    print nb;
-    print glis;
+    printNbL(hell);
+    printNbL(nb);
+    printNbL(glis);
 }
 
 int main(){ 
@@ -17,17 +17,17 @@ int main(){
     int pointeur;
     pointeur = 20000;
     *pointeur = 12;
-    print pointeur;
-    print *pointeur;
+    printNbL(pointeur);
+    printNbL(*pointeur);
 
     int i;
     for(i = 0; i < *pointeur; i = i + 1) {
-        print i;
+        printNbL(i);
     }
 
     do {
         i = i - 1;
-        print i;
+        printNbL(i);
     } while (i > 0);
 
     while(i < 10) {
@@ -35,6 +35,6 @@ int main(){
         if(i != 4){
             continue;
         }
-        print i;
+        printNbL(i);
     }
 }

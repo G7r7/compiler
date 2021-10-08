@@ -7,9 +7,16 @@ int printNb(int n) {
         int c;
         c = n % 10;
         n = n / 10;
-        printNb(n);
+        if (n != 0) {
+            printNb(n);
+        }
         putchar(c + 48);
     } else {
         putchar(48);
     }
+}
+
+int printNbL(int n) {
+    printNb(n);
+    putchar(10);
 }
