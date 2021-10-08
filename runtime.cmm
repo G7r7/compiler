@@ -1,7 +1,3 @@
-int init() {
-    
-}
-
 int printNb(int n) { 
     if (n != 0) {
         int c;
@@ -19,4 +15,30 @@ int printNb(int n) {
 int printNbL(int n) {
     printNb(n);
     putchar(10);
+}
+
+int init() {
+    int N;
+    N = *0;
+    *N = N+1;
+    int size_in_MB;
+    size_in_MB = 2;
+    int memory_cell_size_in_Bytes;
+    memory_cell_size_in_Bytes = 8;
+    int nb_of_memory_cells;
+    nb_of_memory_cells = size_in_MB*1024*1024/memory_cell_size_in_Bytes;
+    int end_of_block_address;
+    end_of_block_address = N + nb_of_memory_cells + 3;
+    printNbL(end_of_block_address);
+    *(N+1) = 0;
+    *(N+2) = nb_of_memory_cells;
+    *(end_of_block_address - 1) = nb_of_memory_cells;
+}
+
+int free(int pointer) {
+
+}
+
+int malloc(int size) {
+
 }
