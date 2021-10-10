@@ -12,9 +12,12 @@ int printNb(int n) {
     }
 }
 
-int printNbL(int n) {
-    printNb(n);
-    putchar(10);
+int printChars(int array, int length) {
+    int i;
+    for (i = 0; i < length; i = i + 1)
+    {
+        putchar(array[i]);
+    }
 }
 
 int init() {
@@ -38,10 +41,6 @@ int init() {
     *pSize1 = nbBlockCells;
     *pNextBlock = -1;
     *pSize2 = nbBlockCells;
-    printNbL(*pBlockOccupied);
-    printNbL(*pSize1);
-    printNbL(*pNextBlock);
-    printNbL(*(pFirstBlock + 2 + *pSize1));
 }
 
 int free(int pointer) {
@@ -49,15 +48,42 @@ int free(int pointer) {
 }
 
 int malloc(int size) {
-    int heapStart, pBlock;
+    int heapStart, pNextFreeBlock, pBlock, pBlockSize1;
     heapStart = *0;
-    pBlock = *heapStart;
-    while (*(pBlock + 1) < size)
-    {
-        pBlock = *(pBlock + 2);
+    pNextFreeBlock = *heapStart;
+    do {
+        pBlock = pNextFreeBlock;
+        pBlockSize1 = pBlock + 1;
+        pNextFreeBlock = pBlock + 2;
     }
-    if (*(pBlock) == -1)
+    while (*(pBlockSize1) < size && *(pNextFreeBlock) != -1);
+    if (*(pBlockSize1) < size && *(pNextFreeBlock) == -1)
     {
-        printNbL(99999999);
+        putchar(109);
+        putchar(97);
+        putchar(108);
+        putchar(108);
+        putchar(111);
+        putchar(99);
+        putchar(32);
+        putchar(58);
+        putchar(32);
+        putchar(79);
+        putchar(117);
+        putchar(116);
+        putchar(32);
+        putchar(111);
+        putchar(102);
+        putchar(32);
+        putchar(109);
+        putchar(101);
+        putchar(109);
+        putchar(111);
+        putchar(114);
+        putchar(121);
+        putchar(46);
+        putchar(10);
+    } else {
+        return pBlock;
     }
 }

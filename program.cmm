@@ -1,11 +1,28 @@
-int function() {
-    print 696;
-    return 6;
+int power(int a, int n) {
+    int i, res;
+    res = a;
+    for (i = 1; i < n; i = i + 1)
+    {
+        res = res * a;
+    }
+    return res;
 }
 
 int main(){
-    int a;
-    print 555;
-    a = function();
-    return 1;
+    int a, n, res;
+    a = 2;
+    n = 10;
+    res = power(a, n);
+    printNb(res);
+    putchar(10);
+    int array;
+    array = malloc(1000000);
+    array = malloc(10);
+    array[0]=72;
+    array[1]=101;
+    array[2]=108;
+    array[3]=108;
+    array[4]=111;
+    array[5]=10;
+    printChars(array,6); 
 }

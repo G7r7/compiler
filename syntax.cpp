@@ -16,7 +16,7 @@ node F(){
     accept(tok_id);
     node N = node{node_function};
     node NSeq = node{node_seq};
-    N.value = current.value;//nom de la fonction
+    N.value = current.value;// id unique de la fonction
     accept(tok_left_parenthesis);
         if (next.type != tok_right_parenthesis)
         {
@@ -69,7 +69,6 @@ node I() { //Instructions
             N.children.push_back(I());
         return N;
     } else if (check(tok_print)) {
-        // Print (debug) to do
         node N = node{node_print};          
         N.children.push_back(E(0));
         accept(tok_semi_colon);
@@ -135,7 +134,7 @@ node I() { //Instructions
         Drop.children.push_back(E1);
         Seq.children.push_back(Drop);
         Seq.children.push_back(Loop);
-        
+
         return Seq;
     } else if (check(tok_do)) {
         node Instruction = I();
@@ -224,11 +223,11 @@ node A() { // Constantes
     } else if(check(tok_id)){
         node N = node{node_ref};
         if(next.type == tok_left_parenthesis) { // Becomes a call node if there are parenthesis
+            N.type = node_call;
+            N.value = current.value;
             accept(tok_left_parenthesis);
             if (next.type != tok_right_parenthesis)
             {
-                N.type = node_call;
-                N.value = current.value;
                 N.children.push_back(E(0));
                 while (check(tok_comma))
                 {
@@ -236,10 +235,9 @@ node A() { // Constantes
                 }   
             }
             accept(tok_right_parenthesis);
-        }else{
+        }else{ // Otherwise just a constant
             N.value = current.value;
         }
-        
         N.line = current.line;
         return N;
     }else {

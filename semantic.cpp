@@ -17,11 +17,11 @@ node AS(node N){
     case node_ref:
         S = search(N.value);
         N.stack_index = S.index;
-        // if (S.type != symbol_variable) {
-        //     std::stringstream msg;
-        //     msg << "Erreur : " << id_map[N.value] << " cannot be used as a variable.\n";
-        //     erreur(msg.str());
-        // }
+        if (S.type != symbol_variable) {
+            std::stringstream msg;
+            msg << "Erreur : " << id_map[N.value] << " cannot be used as a variable.\n";
+            erreur(msg.str());
+        }
         break;
     case node_block:
         start_scope();
@@ -73,9 +73,6 @@ symbol declare(int id, int type){
 symbol search(int id){ // Search in the symbol table if there is a variable defined for this id
     for(auto i = symbols_table.rbegin(); i != symbols_table.rend() ;i++){ //parcours à l'envers
         std::map<int,symbol> current_scope = *i;
-        /*std::cout << current_scope[0].index << std::endl;
-        std::cout << id << std::endl;*/
-
         auto search = current_scope.find(id);
         if(search != current_scope.end()) {
             return search->second;
