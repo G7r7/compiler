@@ -9,7 +9,7 @@
 #include <sstream>
 
 void erreur(std::string msg) {
-    std::cout << msg <<std::endl;
+    std::cout << "Ligne " << current.line << " : " << msg << std::endl;
     exit(0);
 }
 
@@ -18,7 +18,7 @@ void erreur(std::string msg) {
 void advance(void) {
     current = next;
     character = fgetc(fp);
-    while (isspace(character)){
+    while (isspace(character)){ // We ignore white-space characters
         if(character == '\n'){
             line++;
         }
@@ -26,7 +26,7 @@ void advance(void) {
     }
         
     next.line = line;
-    switch (character) {
+    switch (character) { 
             case '+': next.type = tok_plus;
                 break;
             case '-': next.type = tok_minus;
@@ -109,7 +109,7 @@ void advance(void) {
                 break;
             case ';': next.type = tok_semi_colon;
                 break;
-            default:{
+            default:{ // Composite tokens (multiple characters)
             	if(isdigit(character)){ // Numeric constant
                     std::string value;
                     value += character; // storing value as a string
@@ -152,27 +152,22 @@ void advance(void) {
                         next.type = tok_return;
                     }else if(value.compare("print") == 0){
                         next.type = tok_print;
-                    }else {
-                        //c'est un identificateur
-                        //hash-map index_id,value
-                        auto it = std::find_if(std::begin(id_map), std::end(id_map),[value](auto& p) { 
-                            return (p.second.compare(value) == 0); }
-                            );
+                    }else { // Identifier
+                        auto it = std::find_if( // Search if identifier already exists in hash-map
+                            std::begin(id_map),
+                            std::end(id_map),[value](auto& p) {
+                                return (p.second.compare(value) == 0); }
+                        );
 
-                        //printf("%d",index_id);
-                        //std::cout << value << std::endl;
-                        if (it == std::end(id_map)){
-                            id_map[index_id] = value; // Couplage du nom de la variable à un indentifiant unique
-                            
+                        if (it == std::end(id_map)){ // Si n'existe pas, couplage du nom de la variable à un indentifiant unique
+                            id_map[index_id] = value; 
                             next.value = index_id;
                             index_id++;
-                        }else{
+                        }else{ // Sinon on récupère l'identifiant existant et on le met dans comme valeur du token
                             next.value = it->first;
                         }
-                        
                         next.type = tok_id;
                     }
-
                 }else{
                     //char inconnu
                     erreur("Charactère inconnu ligne : " + std::to_string(line));

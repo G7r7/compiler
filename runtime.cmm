@@ -36,7 +36,7 @@ int init() {
 
     *pBlockOccupied = 0;
     *pSize1 = nbBlockCells;
-    *pNextBlock = 0;
+    *pNextBlock = -1;
     *pSize2 = nbBlockCells;
     printNbL(*pBlockOccupied);
     printNbL(*pSize1);
@@ -49,5 +49,15 @@ int free(int pointer) {
 }
 
 int malloc(int size) {
-
+    int heapStart, pBlock;
+    heapStart = *0;
+    pBlock = *heapStart;
+    while (*(pBlock + 1) < size)
+    {
+        pBlock = *(pBlock + 2);
+    }
+    if (*(pBlock) == -1)
+    {
+        printNbL(99999999);
+    }
 }

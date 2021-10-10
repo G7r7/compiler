@@ -1,40 +1,11 @@
-int myfunc(int nb,int glis) {
-    int hell;
-    hell = 666;
-    printNbL(hell);
-    printNbL(nb);
-    printNbL(glis);
+int function() {
+    print 696;
+    return 6;
 }
 
-int main(){ 
-    int count;
-    count = 10;
-    while(count > 0) {
-        myfunc(count,(5-2));
-        count = count - 1;
-    }
-
-    int pointeur;
-    pointeur = 20000;
-    *pointeur = 12;
-    printNbL(pointeur);
-    printNbL(*pointeur);
-
-    int i;
-    for(i = 0; i < *pointeur; i = i + 1) {
-        printNbL(i);
-    }
-
-    do {
-        i = i - 1;
-        printNbL(i);
-    } while (i > 0);
-
-    while(i < 10) {
-        i = i + 1;
-        if(i != 4){
-            continue;
-        }
-        printNbL(i);
-    }
+int main(){
+    int a;
+    print 555;
+    a = function();
+    return 1;
 }

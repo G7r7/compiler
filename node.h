@@ -45,6 +45,7 @@ enum Nodes {
     node_continue,
     node_function,
     node_call,
+    node_return,
     node_indirection,
 };
 

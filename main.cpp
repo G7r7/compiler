@@ -50,7 +50,7 @@ int main(int argc, char const *argv[])
         return EXIT_FAILURE;
     }
 
-    // Adding getchar and putchar to 
+    // Adding getchar and putchar to id_map
     symbols_table.push_back(std::map<int,symbol>());
     declare(index_id,symbol_function);
     id_map[index_id] = "putchar";

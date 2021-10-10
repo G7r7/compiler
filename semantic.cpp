@@ -17,11 +17,11 @@ node AS(node N){
     case node_ref:
         S = search(N.value);
         N.stack_index = S.index;
-        if (S.type != symbol_variable) {
-            std::stringstream msg;
-            msg << "Erreur : " << id_map[N.value] << " cannot be used as a variable.\n";
-            erreur(msg.str());
-        }
+        // if (S.type != symbol_variable) {
+        //     std::stringstream msg;
+        //     msg << "Erreur : " << id_map[N.value] << " cannot be used as a variable.\n";
+        //     erreur(msg.str());
+        // }
         break;
     case node_block:
         start_scope();

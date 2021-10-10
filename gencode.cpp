@@ -180,6 +180,10 @@ void gencode(node N){
             }
             ofp << "call " << N.children.size() << std::endl;
             break;
+        case node_return:
+            gencode(N.children[0]);
+            ofp << "ret\n";
+            break;
         case node_seq:
             for(auto child:N.children){
                 gencode(child);

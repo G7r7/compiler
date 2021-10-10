@@ -27,6 +27,38 @@
             ],
             "problemMatcher": [],
             "group": "build"
-        }
+        },
+        {
+            "label": "compile",
+            "type": "shell",
+            "command": "./compiler.exe",
+            "args": [
+                "program.cmm",
+                "output" 
+            ],
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
+            "label": "execute",
+            "type": "shell",
+            "command": "./msm/msm.exe",
+            "args": [
+                "-m",
+                "output",
+            ],
+            "group": "build"
+        },
+        {
+            "label": "Test program",
+            "type": "shell",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "build debug",
+                "compile",
+                "execute",
+            ],
+            "group": "build",
+        },
     ]
 }

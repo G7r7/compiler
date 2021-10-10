@@ -19,6 +19,6 @@
             "environment": [],
             "externalConsole": false,
             "preLaunchTask": "build debug"
-        }
+        },
     ]
 }

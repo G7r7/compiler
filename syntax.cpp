@@ -164,6 +164,11 @@ node I() { //Instructions
         node cont = node{node_continue};
         accept(tok_semi_colon);
         return cont;
+    } else if(check(tok_return)) {
+        node N = node{node_return};
+        N.children.push_back(E(0));
+        accept(tok_semi_colon);
+        return N;    
     }else {
         // Expressions drop
         node N = node{node_drop};
