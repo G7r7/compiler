@@ -16,7 +16,7 @@ int main(){
     printNb(res);
     putchar(10);
     int array;
-    array = malloc(1000000);
+    array = malloc(64*1024);
     array = malloc(10);
     array[0]=72;
     array[1]=101;

@@ -20,27 +20,41 @@ int printChars(int array, int length) {
     }
 }
 
-int init() {
-    int heapMB, cellBytes, nbHeapCells, nbBlockCells, heapStart, heapEnd;
-    heapStart = *0;
-    heapMB = 1;
-    cellBytes = 8;
-    nbHeapCells = heapMB*1024*1024/cellBytes;
-    nbBlockCells = nbHeapCells - 4;
-    heapEnd = heapStart + nbHeapCells;
-    *heapStart = heapStart + 1;
+int nullPtr() {
+    return 0;
+}
 
-    int pFirstBlock, pBlockOccupied, pSize1, pNextBlock, pSize2;
-    pFirstBlock = *heapStart;
-    pBlockOccupied = *heapStart;
-    pSize1 = pFirstBlock + 1;
-    pNextBlock = pSize1 + 1;
-    pSize2 = pNextBlock + nbBlockCells;
+int bytesPerCell() {
+    return 4;
+}
 
+int nbCells(int size) {
+    int nbMemCells;
+    nbMemCells = size/bytesPerCell();
+    if(size % bytesPerCell() != 0)
+        nbMemCells = nbMemCells + 1;
+    return nbMemCells;
+}
+
+int initFreeBlock(int size, int pBlock, int pNextBlock) {
+    int pSize1, pSize2, nbDataCells, pBlockOccupied;
+    nbDataCells = nbCells(size);
+    pBlockOccupied = pBlock - 2;
+    pSize1 = pBlock - 1;
+    pSize2 = pBlock + nbDataCells;
     *pBlockOccupied = 0;
-    *pSize1 = nbBlockCells;
-    *pNextBlock = -1;
-    *pSize2 = nbBlockCells;
+    *pSize1 = size;
+    *pBlock = pNextBlock;
+    *pSize2 = size;
+    return pBlock;
+}
+
+int init() {
+    int heapKB, pHeapStart;
+    heapKB = 64;
+    pHeapStart = *0;
+    initFreeBlock(heapKB*1024 - 3, pHeapStart + 3, nullPtr());
+    *pHeapStart = pHeapStart + 3;
 }
 
 int free(int pointer) {
@@ -48,16 +62,20 @@ int free(int pointer) {
 }
 
 int malloc(int size) {
-    int heapStart, pNextFreeBlock, pBlock, pBlockSize1;
-    heapStart = *0;
-    pNextFreeBlock = *heapStart;
-    do {
-        pBlock = pNextFreeBlock;
-        pBlockSize1 = pBlock + 1;
-        pNextFreeBlock = pBlock + 2;
+    int nbMemCells, pHeapStart, pBlockSize1, pBlock, pPreviousBlock, pNextBlock, pBlockSize2;
+    nbMemCells = nbCells(size);
+    pPreviousBlock = *0;
+    pBlock = *pPreviousBlock;
+    pBlockSize1 = pBlock - 1;
+    pNextBlock = *pBlock;
+    while (*pBlockSize1 < size && pNextBlock != nullPtr()) {
+        pPreviousBlock = pBlock;
+        pBlock = pNextBlock;
+        pBlockSize1 = pBlock - 1;
+        pNextBlock = *pBlock;
+        printNb(*pBlockSize1);putchar(62);printNb(size);putchar(45);putchar(62);printNb(pNextBlock);putchar(10);
     }
-    while (*(pBlockSize1) < size && *(pNextFreeBlock) != -1);
-    if (*(pBlockSize1) < size && *(pNextFreeBlock) == -1)
+    if (size > *pBlockSize1)
     {
         putchar(109);
         putchar(97);
@@ -84,6 +102,15 @@ int malloc(int size) {
         putchar(46);
         putchar(10);
     } else {
+        int oldSize;
+        oldSize = *(pBlockSize1);
+
+        *(pBlock - 2) = 1;
+        *(pBlock - 1) = size;
+        *(pBlock + nbMemCells) = size;
+
+        *(pPreviousBlock) = initFreeBlock(oldSize - size - 3, pBlock + nbMemCells + 3, pNextBlock);
+
         return pBlock;
     }
 }

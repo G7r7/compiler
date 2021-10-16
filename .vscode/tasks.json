@@ -44,7 +44,6 @@
             "type": "shell",
             "command": "./msm/msm.exe",
             "args": [
-                "-m",
                 "output",
             ],
             "group": "build"
