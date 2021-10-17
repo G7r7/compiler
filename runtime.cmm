@@ -58,7 +58,11 @@ int init() {
 }
 
 int free(int pointer) {
-
+    int size, pHeapStart, pNextFreeBlock;
+    size = *(pointer - 1);
+    pHeapStart = *0;
+    pNextFreeBlock = *pHeapStart;
+    *pHeapStart = initFreeBlock(size, pointer, pNextFreeBlock);
 }
 
 int malloc(int size) {
