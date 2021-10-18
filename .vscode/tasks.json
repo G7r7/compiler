@@ -40,6 +40,17 @@
             "group": "build"
         },
         {
+            "label": "compile current",
+            "type": "shell",
+            "command": "./compiler.exe",
+            "args": [
+                "${relativeFileDirname}/${fileBasename}",
+                "output" 
+            ],
+            "problemMatcher": [],
+            "group": "build"
+        },
+        {
             "label": "execute",
             "type": "shell",
             "command": "./msm/msm.exe",
@@ -55,6 +66,16 @@
             "dependsOn": [
                 "build debug",
                 "compile",
+                "execute",
+            ],
+            "group": "build",
+        },
+        {
+            "label": "Test current program",
+            "type": "shell",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "compile current",
                 "execute",
             ],
             "group": "build",
