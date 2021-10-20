@@ -1,0 +1,15 @@
+int main(){
+    int a;
+    a = 0;
+    do
+    {
+        if(a == 9){
+            break;
+        }
+        a = a + 1;
+
+
+    } while (a < 50);
+    print a;
+
+}
