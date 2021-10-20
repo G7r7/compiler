@@ -4,6 +4,7 @@
 #include "globals.h"
 #include "syntax.h"
 #include "operator_properties.h"
+#include <sstream>
 
 /* Returns the syntaxic node tree in function of the current token
 */
@@ -147,11 +148,17 @@ node I() { //Instructions
         node Loop = node{node_loop};
         node Break = node{node_break};
         node Seq = node{node_seq};
+        node LoopFake = node{node_loop};
+        node SeqFake = node{node_seq};
         Cond.children.push_back(Expression);
         Cond.children.push_back(Instruction);
         Cond.children.push_back(Break);
         Loop.children.push_back(Cond);
-        Seq.children.push_back(Instruction);
+        //on camoufle la première instruction du do while avec une loop pour break et continue
+        SeqFake.children.push_back(Instruction);
+        SeqFake.children.push_back(node{node_break});
+        LoopFake.children.push_back(SeqFake);
+        Seq.children.push_back(LoopFake);
         Seq.children.push_back(Loop);
 
         return Seq;
@@ -241,13 +248,9 @@ node A() { // Constantes
         N.line = current.line;
         return N;
     }else {
-        erreur("Atome attendu");
-        node N;
-        N.type = node_cst;
-        N.value = 0;
-        N.line = current.line;
-        advance();
-        return N;
+        std::stringstream msg;
+        msg << "Atome attendu ligne " << current.line << std::endl;
+        erreur(msg.str());
     }    
 }
 
