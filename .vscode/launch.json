@@ -26,9 +26,9 @@
             "request": "launch",
             "program": "${workspaceFolder}/test/tester.exe",
             "args": [
-                "-compiler",
+                "-c",
                 "compiler.exe",
-                "-test-folder",
+                "-t",
                 "test/tests/"
             ],
             "stopAtEntry": false,

@@ -8,4 +8,6 @@
 
 std::string usage();
 
+std::vector<std::string> getOptions();
+
 #endif
