@@ -51,7 +51,7 @@ void advance(void) {
                     next.type = tok_and;                  
                 }else{
                     ungetc(character,fp);
-                    next.type = tok_address;
+                    erreur(" & manquant ligne : " + std::to_string(line));
                 }
             }
                 break;
@@ -61,8 +61,6 @@ void advance(void) {
                 }else{
                     ungetc(character,fp);
                     erreur(" | manquant ligne : " + std::to_string(line));
-                    //reprise sur erreur
-                    next.type = tok_or;
                 }
             }
             break; 
