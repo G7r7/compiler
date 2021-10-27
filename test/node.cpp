@@ -1,5 +1,6 @@
 #include "node.hpp"
 #include <iostream>
+#include <stdexcept>
 
 node constructCommandTree(std::vector<token>* tokens, int acceptedTokType) {
     if (tokens->size())
@@ -11,8 +12,8 @@ node constructCommandTree(std::vector<token>* tokens, int acceptedTokType) {
         node.value = tok.value;
         if (tok.type != acceptedTokType)
         {
-            std::cerr << "Error: wrong syntax: " << getTokenType(acceptedTokType) << " wanted, got " << getTokenType(tok.type) << "." << std::endl;
-            exit(0);
+            std::string error = "Error: wrong syntax: " + getTokenType(acceptedTokType) + " wanted, got " + getTokenType(tok.type) + ".";
+            throw error;
         }
         int wantedTokenType;
         switch (tok.type)
@@ -35,11 +36,11 @@ node constructCommandTree(std::vector<token>* tokens, int acceptedTokType) {
                 return node;
                 break;
             default:
-                std::cerr << "Error: unknown token type: " << tok.type << "." << std::endl;
-                exit(0);
+                std::string error = "Error: unknown token type: " + getTokenType(tok.type) + ".";
+                throw error;
         }
     } else {
-        std::cerr << "Error: no tokens to parse." << std::endl;
-        exit(0);
+        std::string error = "Error: no tokens to parse.";
+        throw error;
     }
 }

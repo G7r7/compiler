@@ -6,14 +6,24 @@
 #include <string>
 #include "token.hpp"
 #include "node.hpp"
+#include "usage.hpp"
 
 int main(int argc, char const *argv[])
 {
     std::fstream file;
     node tree;
 
-    std::vector<token> tokens = getTokens(argc, argv);
-    tree = constructCommandTree(&tokens, tokenProgramName);
+    try
+    {
+        std::vector<token> tokens = getTokens(argc, argv);
+        tree = constructCommandTree(&tokens, tokenProgramName);
+    }
+    catch(std::string msg)
+    {
+        std::cerr << msg << std::endl;
+        std::cerr << usage() << std::endl;
+        exit(0);
+    }
 
     std::cout << "Program : " << tree.value << std::endl;
     for (size_t i = 0; i < tree.children.size(); i++)
