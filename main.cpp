@@ -60,6 +60,7 @@ int main(int argc, char const *argv[])
     index_id++;
 
     compileFile("runtime.cmm"); // Compiling runtime.cmm program.
+    line = 1; //Reset line count
     compileFile(argv[1]); // Compiling main program.
 
     fp = fopen("runtime.s","r");

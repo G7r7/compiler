@@ -195,8 +195,6 @@ node P() { // Préfixes
         N.children.push_back(A);
         N.line = current.line;
         return N;
-    } else if(check(tok_address)){
-
     }else if(check(tok_bang)){
         node A = P();
         node N;
