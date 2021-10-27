@@ -80,5 +80,34 @@
             ],
             "group": "build",
         },
+        {
+            "label": "build tester",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "*.cpp",
+                "-o",
+                "tester.exe",
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/test"
+            },
+            "group": "build"
+        },
+        {
+            "label": "build tester debug",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                "*.cpp",
+                "-o",
+                "tester.exe",
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}/test"
+            },
+            "group": "build"
+        },
     ]
 }

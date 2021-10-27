@@ -20,5 +20,23 @@
             "externalConsole": false,
             "preLaunchTask": "build debug"
         },
+        {
+            "name": "g++.exe - debug tester.exe",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/test/tester.exe",
+            "args": [
+                "-compiler",
+                "compiler.exe",
+                "-test-folder",
+                "test/tests/"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "miDebuggerPath": "gdb",
+            "environment": [],
+            "externalConsole": false,
+            "preLaunchTask": "build tester debug"
+        },
     ]
 }
