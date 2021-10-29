@@ -10,6 +10,6 @@ int main(){
 
 
     } while (a < 50);
-    print a;
-
+    assert(a, 9);
+    return 0;
 }

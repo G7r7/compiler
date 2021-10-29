@@ -8,6 +8,5 @@ int main(){
             break;
         }
     }
-    print a;
-
+    assert(a, 10);
 }

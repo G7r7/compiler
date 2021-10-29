@@ -15,6 +15,22 @@ int printNb(int n) {
     }
 }
 
+int assert(int a, int b) {
+    if(a == b) {
+        putchar(79);
+        putchar(75);
+        return 1;
+    } else {
+        printNb(a);
+        putchar(32);
+        putchar(33);
+        putchar(61);
+        putchar(32);
+        printNb(b);
+        return 0;
+    }
+}
+
 int printChars(int array, int length) {
     int i;
     for (i = 0; i < length; i = i + 1)

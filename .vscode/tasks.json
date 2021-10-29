@@ -44,7 +44,7 @@
             "type": "shell",
             "command": "./compiler.exe",
             "args": [
-                "${relativeFileDirname}/${fileBasename}",
+                "${relativeFile}",
                 "output" 
             ],
             "problemMatcher": [],
@@ -88,9 +88,10 @@
                 "*.cpp",
                 "-o",
                 "tester.exe",
+                "-std=c++17",
             ],
             "options": {
-                "cwd": "${workspaceFolder}/test"
+                "cwd": "${workspaceFolder}${pathSeparator}test"
             },
             "group": "build"
         },
@@ -103,9 +104,10 @@
                 "*.cpp",
                 "-o",
                 "tester.exe",
+                "-std=c++17",
             ],
             "options": {
-                "cwd": "${workspaceFolder}/test"
+                "cwd": "${workspaceFolder}${pathSeparator}test"
             },
             "group": "build"
         },

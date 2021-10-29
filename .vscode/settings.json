@@ -45,6 +45,10 @@
         "typeinfo": "cpp",
         "map": "cpp",
         "*.cmm": "cpp",
-        "cstring": "cpp"
+        "cstring": "cpp",
+        "chrono": "cpp",
+        "codecvt": "cpp",
+        "ctime": "cpp",
+        "ratio": "cpp"
     }
 }

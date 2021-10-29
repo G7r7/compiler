@@ -8,7 +8,7 @@
             "name": "g++.exe - debug compiler.exe",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/compiler.exe",
+            "program": "${workspaceFolder}${pathSeparator}compiler.exe",
             "args": [
                 "program.cmm",
                 "output" 
@@ -24,7 +24,7 @@
             "name": "g++.exe - debug tester.exe",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/test/tester.exe",
+            "program": "${workspaceFolder}${pathSeparator}test${pathSeparator}tester.exe",
             "args": [
                 "-c",
                 "compiler.exe",
