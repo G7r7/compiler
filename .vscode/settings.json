@@ -49,6 +49,7 @@
         "chrono": "cpp",
         "codecvt": "cpp",
         "ctime": "cpp",
-        "ratio": "cpp"
+        "ratio": "cpp",
+        "thread": "cpp"
     }
 }

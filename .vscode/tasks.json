@@ -86,6 +86,8 @@
             "command": "g++",
             "args": [
                 "*.cpp",
+                "-fopenmp",
+                "-lpthread",
                 "-o",
                 "tester.exe",
                 "-std=c++17",
@@ -102,6 +104,8 @@
             "args": [
                 "-g",
                 "*.cpp",
+                "-fopenmp",
+                "-lpthread",
                 "-o",
                 "tester.exe",
                 "-std=c++17",
