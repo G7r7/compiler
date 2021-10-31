@@ -3,7 +3,7 @@
 #include <thread>
 #include "test.hpp"
 
-void testProgramsThread(std::vector<std::string>* filePaths, std::string* compilerPath, std::string* machinePath, std::fstream* outputFile) {
+void testProgramsThread(std::vector<std::string>* filePaths, std::string* compilerPath, std::string* machinePath, std::ofstream* outputFile) {
     pthread_t pt[filePaths->size()];
     for (int i = 0; i < filePaths->size(); i++) {
         int finished = 0;

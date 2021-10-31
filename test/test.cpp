@@ -11,7 +11,7 @@ void* testProgram(void* args) {
     std::string* compilerPath = argsStruct->compilerPath;
     std::string* filePath = argsStruct->filePath;
     std::string* machinePath = argsStruct->machinePath;
-    std::fstream* logFile = argsStruct->logFile;
+    std::ofstream* logFile = argsStruct->logFile;
     int* finished = argsStruct->finished;
 
     std::cout << *filePath << std::endl;

@@ -5,6 +5,6 @@
 #ifndef THREAD
 #define THREAD
 
-void testProgramsThread(std::vector<std::string>* filePaths, std::string* compilerPath, std::string* machinePath, std::fstream* outputFile);
+void testProgramsThread(std::vector<std::string>* filePaths, std::string* compilerPath, std::string* machinePath, std::ofstream* outputFile);
 
 #endif

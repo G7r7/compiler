@@ -5,7 +5,7 @@
 #include <thread>
 #include <chrono> 
 
-void testProgramsOmp(std::vector<std::string>* filePaths, std::string* compilerPath, std::string* machinePath, std::fstream* outputFile) {
+void testProgramsOmp(std::vector<std::string>* filePaths, std::string* compilerPath, std::string* machinePath, std::ofstream* outputFile) {
     for (int i = 0; i < filePaths->size(); i++) {
         double start = 0; 
         double end = 0;
@@ -40,6 +40,7 @@ void testProgramsOmp(std::vector<std::string>* filePaths, std::string* compilerP
                             printf("Waiting ...\n");
                     }
                     if(end == 0) {
+                        outputFile->close();
                         printf("Timed out : please kill remaining msm instance manually...\n");
                     }
                 }

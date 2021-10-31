@@ -16,7 +16,6 @@
 int main(int argc, char const *argv[])
 {
     std::fstream inputFile;
-    std::fstream outputFile;
     node tree;
 
     try
@@ -54,7 +53,7 @@ int main(int argc, char const *argv[])
         std::cout << "compiler path: " << compilerPath << std::endl;
         std::cout << "tests folder path: " << testsPath << std::endl;
 
-        outputFile.open("log.txt", std::ios_base::app);
+        std::ofstream outputFile("log.txt", std::ofstream::trunc);
 
         std::vector<std::string> filePaths;
         for (const auto& dirEntry : std::filesystem::recursive_directory_iterator(testsPath)) {

@@ -5,6 +5,6 @@
 #ifndef OMP
 #define OMP
 
-void testProgramsOmp(std::vector<std::string>* filePaths, std::string* compilerPath, std::string* machinePath, std::fstream* outputFile);
+void testProgramsOmp(std::vector<std::string>* filePaths, std::string* compilerPath, std::string* machinePath, std::ofstream* outputFile);
 
 #endif
