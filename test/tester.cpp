@@ -11,10 +11,7 @@
 #include <filesystem>
 #include <omp.h>
 #include <chrono>
-#include <thread>
-#include <pthread.h>
-#include <signal.h>
-#include "test.hpp"
+#include "thread.hpp"
 
 int main(int argc, char const *argv[])
 {
@@ -66,34 +63,7 @@ int main(int argc, char const *argv[])
             }
         }
 
-        pthread_t pt[filePaths.size()];
-        for (int i = 0; i < filePaths.size(); i++) {
-            int finished = 0;
-            printf("Before...\n");
-            TestArgs args = { 
-                &compilerPath,
-                &filePaths[i],
-                &machinePath,
-                &outputFile,
-                &finished
-            };
-            pthread_create(&pt[i], NULL, testProgram, (void*)&args);
-            printf("I'm the timer...\n");
-            for (size_t i = 0; i < 10; i++)
-            {
-                std::this_thread::sleep_for(std::chrono::milliseconds(100));                        
-                if(finished) {
-                    printf("Work is done!\n");
-                    break;
-                }
-                else
-                    printf("I'm still waiting ...\n");
-            }
-            if(!finished) {
-                printf("I'm still waiting and it's time out...\n");
-                pthread_kill(pt[i], 10);
-            }
-        }
+        testProgramsThread(&filePaths, &compilerPath, &machinePath, &outputFile);
 
         // for (int i = 0; i < filePaths.size(); i++) {
         //     double start = 0; 

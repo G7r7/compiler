@@ -1,12 +1,10 @@
 #include "test.hpp"
 #include <iostream>
-#include <filesystem>
 #include <stdlib.h>
 #include <stdio.h>
 #include <fstream>
 #include "exec.hpp"
-#include <chrono>
-
+#include "thread.hpp"
 
 void* testProgram(void* args) {
     TestArgs* argsStruct = (struct TestArgs*) args;
