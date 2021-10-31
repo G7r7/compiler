@@ -9,9 +9,9 @@
 #include "usage.hpp"
 #include <algorithm>
 #include <filesystem>
-#include <omp.h>
 #include <chrono>
 #include "thread.hpp"
+#include "omp.hpp"
 
 int main(int argc, char const *argv[])
 {
@@ -63,53 +63,9 @@ int main(int argc, char const *argv[])
             }
         }
 
-        testProgramsThread(&filePaths, &compilerPath, &machinePath, &outputFile);
+        // testProgramsThread(&filePaths, &compilerPath, &machinePath, &outputFile);
+        testProgramsOmp(&filePaths, &compilerPath, &machinePath, &outputFile);
 
-        // for (int i = 0; i < filePaths.size(); i++) {
-        //     double start = 0; 
-        //     double end = 0;
-        //     #pragma omp parallel
-        //     {
-        //         #pragma omp sections nowait
-        //         {
-        //             #pragma omp section
-        //             {
-        //                 #pragma omp atomic write
-        //                 pt = pthread_self();
-        //                 #pragma omp atomic write
-        //                 start = omp_get_wtime(); 
-        //                 std::cout << filePaths[i] << std::endl;
-        //                 std::string compileCommand = compilerPath + " " + filePaths[i] + " " + filePaths[i] + ".out";
-        //                 exec(compileCommand.c_str());
-        //                 std::string testCommand = machinePath + " " + filePaths[i] + ".out";
-        //                 std::string commandResult = exec(testCommand.c_str());
-        //                 #pragma omp critical
-        //                 outputFile << filePaths[i] << " : " << commandResult << std::endl; 
-        //                 #pragma omp atomic write
-        //                 end = omp_get_wtime(); 
-        //             }
-        //             #pragma omp section
-        //             {
-        //                 printf("I'm the timer...\n");
-        //                 for (size_t i = 0; i < 10; i++)
-        //                 {
-        //                     std::this_thread::sleep_for(std::chrono::milliseconds(100));                        
-        //                     if(end != 0) {
-        //                         printf("Work is done!\n");
-        //                         break;
-        //                     }
-        //                     else
-        //                         printf("I'm still waiting ...\n");
-        //                 }
-        //                 if(end == 0) {
-        //                     printf("I'm still waiting and it's time out...\n");
-        //                     pthread_cancel(pt);
-        //                 }
-        //             }
-        //         }
-        //     }
-        //     printf("Work took %f seconds\n", end - start);
-        // }
     }
     catch(std::string msg)
     {
