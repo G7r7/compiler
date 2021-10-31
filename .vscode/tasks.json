@@ -44,7 +44,7 @@
             "type": "shell",
             "command": "./compiler.exe",
             "args": [
-                "${relativeFileDirname}/${fileBasename}",
+                "${relativeFile}",
                 "output" 
             ],
             "problemMatcher": [],
@@ -79,6 +79,41 @@
                 "execute",
             ],
             "group": "build",
+        },
+        {
+            "label": "build tester",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "*.cpp",
+                "-fopenmp",
+                "-lpthread",
+                "-o",
+                "tester.exe",
+                "-std=c++17",
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}${pathSeparator}test"
+            },
+            "group": "build"
+        },
+        {
+            "label": "build tester debug",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                "*.cpp",
+                "-fopenmp",
+                "-lpthread",
+                "-o",
+                "tester.exe",
+                "-std=c++17",
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}${pathSeparator}test"
+            },
+            "group": "build"
         },
     ]
 }

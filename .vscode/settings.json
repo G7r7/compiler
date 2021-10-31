@@ -44,6 +44,13 @@
         "streambuf": "cpp",
         "typeinfo": "cpp",
         "map": "cpp",
-        "*.cmm": "cpp"
+        "*.cmm": "cpp",
+        "cstring": "cpp",
+        "chrono": "cpp",
+        "codecvt": "cpp",
+        "ctime": "cpp",
+        "ratio": "cpp",
+        "thread": "cpp",
+        "filesystem": "cpp"
     }
 }
