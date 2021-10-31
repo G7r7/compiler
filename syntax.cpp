@@ -83,7 +83,6 @@ node I() { //Instructions
             accept(tok_comma);
             accept(tok_id);
             N.children.push_back(node{node_decl,current.value});
-            //to check
         }
         return N;    
     }else if(check(tok_if)){

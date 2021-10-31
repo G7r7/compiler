@@ -65,9 +65,15 @@ node AS(node N){
 }
 
 symbol declare(int id, int type){
+    std::map<int,symbol> current_scope = *symbols_table.rbegin();
+    auto search = current_scope.find(id);
+    if(search != current_scope.end()){
+        erreur("Double definition \n");
+    }
     symbol sy = symbol{nvar, type};
     symbols_table[symbols_table.size() - 1][id] = sy;
 
+    //vérifier qu'iln'y a pas d'autre variable qui sont défini
     return sy;
 }
 symbol search(int id){ // Search in the symbol table if there is a variable defined for this id
@@ -78,7 +84,7 @@ symbol search(int id){ // Search in the symbol table if there is a variable defi
             return search->second;
         }
     }
-    erreur("Undefined variable \n");
+    erreur("Undefined identifier\n");
     exit(-1);
 }
 void start_scope(){

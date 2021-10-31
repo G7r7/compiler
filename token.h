@@ -16,7 +16,6 @@ enum Tokens {
     tok_divide,
     tok_modulo,
     tok_bang,
-    tok_address,
     tok_equals,
     tok_equals_to,
     tok_not_equals_to,
