@@ -47,6 +47,7 @@ enum Nodes {
     node_call,
     node_return,
     node_indirection,
+    node_target,
 };
 
 #endif

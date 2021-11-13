@@ -139,6 +139,8 @@ void gencode(node N){
                 int l2 = nlabel;
                 nlabel++;
                 labels.push_back({l1,l2});
+                labelTarget.push_back(nlabel);
+                nlabel++;
                 ofp << ".l" << l1 << "\n";
                 
                 gencode(N.children[0]);
@@ -159,8 +161,17 @@ void gencode(node N){
             if(labels.size() == 0){
                 erreur("Erreur symbole continue non valide \n");
             }else{
-                pairs label = labels[labels.size() - 1];
-                ofp << "jump l" << label.first << "\n";
+                int label = labelTarget[labelTarget.size() - 1];
+                ofp << "jump l" << label << "\n";
+            }
+            break;
+        case node_target:
+            if(labelTarget.size() == 0){
+                erreur("Erreur symbole continue non valide \n");
+            }else{
+                int l1 = labelTarget[labelTarget.size() - 1];
+                ofp << ".l" << l1 << "\n";
+                labelTarget.pop_back();
             }
             break;
         case node_function:

@@ -101,9 +101,13 @@ node I() { //Instructions
         accept(tok_left_parenthesis);        
         node N = node{node_loop};
         node cond = node{node_cond};
+        node seq = node{node_seq};
+        node target = node{node_target};
         cond.children.push_back(E(0));
-        accept(tok_right_parenthesis); 
-        cond.children.push_back(I());
+        accept(tok_right_parenthesis);
+        seq.children.push_back(I());
+        seq.children.push_back(target); 
+        cond.children.push_back(seq);
         cond.children.push_back(node{node_break});
         N.children.push_back(cond);
         
@@ -124,8 +128,10 @@ node I() { //Instructions
         node Seq2 = node{node_seq};
         node Break = node{node_break};
         node Drop3 = node{node_drop};
+        node target = node{node_target};
         Drop3.children.push_back(E3);
         Seq2.children.push_back(Instruction);
+        Seq2.children.push_back(target);
         Seq2.children.push_back(Drop3);
         Cond.children.push_back(E2);
         Cond.children.push_back(Seq2);
@@ -149,12 +155,18 @@ node I() { //Instructions
         node Seq = node{node_seq};
         node LoopFake = node{node_loop};
         node SeqFake = node{node_seq};
+        node SeqTarget = node{node_seq};
+        node Target = node{node_target};
+
+        SeqTarget.children.push_back(Instruction);
+        SeqTarget.children.push_back(Target);
         Cond.children.push_back(Expression);
-        Cond.children.push_back(Instruction);
+        Cond.children.push_back(SeqTarget);
         Cond.children.push_back(Break);
         Loop.children.push_back(Cond);
         //on camoufle la première instruction du do while avec une loop pour break et continue
         SeqFake.children.push_back(Instruction);
+        SeqFake.children.push_back(Target);
         SeqFake.children.push_back(node{node_break});
         LoopFake.children.push_back(SeqFake);
         Seq.children.push_back(LoopFake);

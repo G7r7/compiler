@@ -19,6 +19,7 @@ int nvar = 0;
 int nlabel = 0;
 std::vector<std::map<int,symbol>> symbols_table;
 std::vector<pairs> labels;
+std::vector<int> labelTarget;
 
 
 int compileFile(const char* filename) {

@@ -26,5 +26,7 @@ struct pairs
     int second;
 };
 extern std::vector<pairs> labels;
+//liste d'entier pour gérer les boucles for
+extern std::vector<int> labelTarget;
 
 #endif
