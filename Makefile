@@ -3,15 +3,13 @@ CC=g++
 CFLAGS=-c -Wall
 
 SRC=$(wildcard *.cpp)
-EXEC = compil.exe
+EXEC = compiler.exe
 OBJ=$(SRC:.c=.o)
 
 all: $(EXEC)
 
-compil.exe: $(OBJ)
+$(EXEC): $(OBJ)
 	$(CC) -o $@ $^ $(LDFLAGS)
-
-main.o: lexic.h 
 
 %.o: %.c
 	$(CC) -o $@ -c $< $(CFLAGS)
