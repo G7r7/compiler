@@ -1,0 +1,12 @@
+int main()
+{
+    int a;
+    a = 0;
+    if(1) {
+        a = 3;
+    }
+    if(0) {
+        a = 6;
+    }
+    assert(a, 3);
+}

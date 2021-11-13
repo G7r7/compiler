@@ -1,0 +1,3 @@
+int main() {
+    assert(5/3, 1);
+}

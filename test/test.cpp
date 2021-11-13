@@ -14,13 +14,24 @@ void* testProgram(void* args) {
     std::ofstream* logFile = argsStruct->logFile;
     int* finished = argsStruct->finished;
 
-    std::cout << *filePath << std::endl;
+    std::cout << *filePath << " : ";
+    *logFile << *filePath << " : ";
     std::string compileCommand = *compilerPath + " " + *filePath + " " + *filePath + ".out";
-    exec(compileCommand.c_str());
+    std::string compileResult = exec((compileCommand + " 2>&1").c_str());
+    if (compileResult.size()) { // Compiling error
+        std::cout << compileResult << std::endl;
+        *logFile << compileResult << std::endl;
+        *finished = -1;
+        return 0;
+    }
     std::string testCommand = *machinePath + " " + *filePath + ".out";
-    std::string commandResult = exec(testCommand.c_str());
-    *logFile << *filePath << " : " << commandResult << std::endl;
-    *finished = 1;
-
+    std::string testResult = exec((testCommand + " 2>&1").c_str());
+    std::cout << testResult << std::endl;
+    *logFile << testResult << std::endl;
+    if(testResult == "OK") {
+        *finished = 1;
+    } else {
+        *finished = -1;
+    }
     return 0;
 }
