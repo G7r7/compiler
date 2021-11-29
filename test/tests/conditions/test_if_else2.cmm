@@ -1,0 +1,21 @@
+int main(){
+    int n;
+    n = 4;
+
+    if(n == 2){
+       printNb(5); 
+    }else if(n == 0){
+        printNb(0);
+    }else{
+        printNb(2);
+    }
+
+    if(n == 4)
+        if(n == 4)
+            if(n != 4)
+                n;
+                else
+                printNb(-5);
+            
+    
+}

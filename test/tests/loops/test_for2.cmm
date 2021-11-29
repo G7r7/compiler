@@ -1,0 +1,18 @@
+int main(){
+    int a;
+    a = 0;
+    int b;
+    b = 0;
+
+    for (a = 0; (a < 50 && 4 == 4); a = a + 1)
+    {
+        int a;
+        a = 0;
+        for (b = 0; (b < 50 && 4 == 4); b = b + 1)
+        {
+
+        }  
+    }  
+    assert(a, 50);
+    assert(b, 50);
+}

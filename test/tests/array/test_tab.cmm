@@ -1,0 +1,23 @@
+int main(){
+    int t;
+    int n;
+    t = 5;
+    n = *t;
+    printNb(n);
+    int v;
+    v = *n;
+
+    printNb(v);
+
+    *t = malloc(15);
+    int i;
+
+    for(i = 0; i < 15 ; i = i + 1){
+        *t[i] = malloc(15);
+    }
+
+    for(i = 0; i < 15; i = i + 1){
+
+    }
+    
+}
