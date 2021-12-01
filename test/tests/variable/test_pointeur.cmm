@@ -1,0 +1,12 @@
+int modifyVar(int n){
+    *n = 1000;
+}
+
+int main(){
+    int t;
+    int n;
+    *t = 5;
+    n = *t;
+    modifyVar(t);
+    assert(*t, 1000);
+}

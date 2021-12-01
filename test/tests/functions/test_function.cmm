@@ -1,0 +1,15 @@
+int calcul(int a, int b){
+    return a + b;
+}
+
+int main(){
+    assert(calcul(1, 1), 2);
+    assert(calcul(5 - 2, 1), 4);
+    assert(calcul((5 > 2), 1), 2);
+    assert(calcul((5 < 2), 1), 1);
+    assert(calcul(calcul(1 , 1), 1), 3);
+    int a, b;
+    a = 1;
+    b = 1;
+    assert(calcul(a, b), 2);
+}
