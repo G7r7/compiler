@@ -1,0 +1,12 @@
+int main(){
+    int a;
+    a = 0;
+    a = !a;
+    assert(a, 1);
+
+    a = -a;
+    int b;
+    b = 2;
+    b = b + a;
+    assert(b, 1);
+}

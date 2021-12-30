@@ -1,0 +1,16 @@
+int main(){
+    int a;
+    a = 4;
+    {
+        int a;
+        a = 2;
+        assert(a, 2);
+        {
+            int b;
+            b = a;
+            assert(b, 2);
+        }
+    }
+    a = b;
+    assert(a, 2);
+}

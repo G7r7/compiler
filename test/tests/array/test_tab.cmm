@@ -1,0 +1,24 @@
+int main(){
+    int tab;
+    int i;
+    tab = malloc(15);
+    
+    for(i = 0;i < 15 ; i = i + 1){
+        tab[i] = i;
+    }
+ 
+    for(i = 0;i < 15 ; i = i + 1){
+        assert(tab[i], i);
+    }
+
+    int tab2;
+    tab2 = malloc(15);
+
+    for(i = 0;i < 15 ; i = i + 1){
+        *(tab2 + i) = i;
+    }
+    
+    for(i = 0;i < 15 ; i = i + 1){
+        assert(tab2[i], i);
+    }
+}

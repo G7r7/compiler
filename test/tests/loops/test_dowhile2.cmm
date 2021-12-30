@@ -1,0 +1,9 @@
+int main(){
+    int a;
+    a = 0;
+    do{
+        do{
+            a = a + 1;
+        }while(a < 15);
+    } while(a < 100);
+}
