@@ -5,5 +5,5 @@
 *.exe
 *.out
 *.dll
-*.txt
 *.o
+build
