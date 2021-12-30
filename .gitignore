@@ -1,7 +1,8 @@
 *
 !*/
 !*.*
-!Makefile
+*.txt
+!CMakeList.txt
 *.exe
 *.out
 *.dll
