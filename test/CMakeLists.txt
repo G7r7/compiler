@@ -7,8 +7,13 @@ add_executable(tester ${SOURCE_FILES})
 
 set_property(TARGET tester PROPERTY CXX_STANDARD 17)
 
-if(WIN32)
-    target_link_libraries(tester omp pthread)
-else()
-    target_link_libraries(tester omp pthread)
+find_package(OpenMP)
+if(OpenMP_CXX_FOUND)
+    target_link_libraries(tester PUBLIC OpenMP::OpenMP_CXX)
 endif()
+
+# if(WIN32)
+#     target_link_libraries(tester omp pthread)
+# else()
+#     target_link_libraries(tester fopenmp pthread)
+# endif()
