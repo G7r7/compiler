@@ -1,0 +1,13 @@
+int main(){
+    int n;
+    n = 4;
+    
+    if(n == 4)
+        if(n == 4)
+            if(n != 4)
+                n;
+                else
+                assert(1,1);
+            
+    
+}
