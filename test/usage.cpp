@@ -2,7 +2,7 @@
 #include <vector>
 
 std::string usage() {
-    return (std::string)"usage: tester.exe -m machine-path -c compiler-path -t test-folder-path";
+    return (std::string)"usage: tester -m machine-path -c compiler-path -t test-folder-path";
 }
 
 std::vector<std::string> getOptions() {
