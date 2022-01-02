@@ -15,7 +15,7 @@ make
 
 To compile a program
 ```shell
-./compiler program.cmm program
+./compiler program.cmm program.out
 ```
 
 To compile the msm
