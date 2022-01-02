@@ -30,40 +30,4 @@ To launch premade tests :
 ```
 ## About
 
-This project is a simple c compiler limited to the following tokens :
-- Constant (integer)
-- Identifier (variable name)
-- \+
-- \-
-- \*
-- /
-- %
-- !
-- & (address)
-- = (initialize)
-- ==
-- !=
-- <
-- <=
-- \>
-- \>=
-- &&
-- ||
-- ,
-- ;
-- int
-- if
-- else
-- for
-- while
-- do
-- break
-- continue
-- return
-- (
-- )
-- [
-- ]
-- {
-- }
-- EOF (End Of File)
+This project is a reduced c compiler.
