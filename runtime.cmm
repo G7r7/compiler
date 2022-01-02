@@ -47,6 +47,10 @@ int bytesPerCell() {
     return 4;
 }
 
+int sizeOfIntInBytes() {
+    return 4;
+}
+
 int nbCells(int size) {
     int nbMemCells;
     nbMemCells = size/bytesPerCell();
@@ -99,6 +103,7 @@ int malloc(int size) {
     }
     if (size > *pBlockSize1)
     {
+        putchar(10);
         putchar(109);
         putchar(97);
         putchar(108);
@@ -132,7 +137,6 @@ int malloc(int size) {
         *(pBlock + nbMemCells) = size;
 
         *(pPreviousBlock) = initFreeBlock(oldSize - size - 3, pBlock + nbMemCells + 3, pNextBlock);
-
         return pBlock;
     }
 }
