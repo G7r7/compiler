@@ -63,4 +63,4 @@ Exemple :
     ./test/build/tester -m msm/msm -c build/compiler -t test/tests/
 
 Pour qu'un programme de test soit comptabilisé comme réussi il faut que tous les assert(valeur1, valeur2),
-réussissent et qu'aucune autre sortie ne soit affichée dans la sorttie standard (pas de print).
+réussissent et qu'aucune autre sortie ne soit affichée dans la sortie standard (pas de print).
