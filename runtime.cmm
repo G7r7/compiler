@@ -96,7 +96,6 @@ int malloc(int size) {
         pBlock = pNextBlock;
         pBlockSize1 = pBlock - 1;
         pNextBlock = *pBlock;
-        printNb(*pBlockSize1);putchar(62);printNb(size);putchar(45);putchar(62);printNb(pNextBlock);putchar(10);
     }
     if (size > *pBlockSize1)
     {

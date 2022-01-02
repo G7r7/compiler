@@ -5,6 +5,7 @@
 #include <fstream>
 #include "exec.hpp"
 #include "thread.hpp"
+#include <regex>
 
 void* testProgram(void* args) {
     TestArgs* argsStruct = (struct TestArgs*) args;
@@ -28,7 +29,8 @@ void* testProgram(void* args) {
     std::string testResult = exec((testCommand + " 2>&1").c_str());
     std::cout << testResult << std::endl;
     *logFile << testResult << std::endl;
-    if(testResult == "OK") {
+    std::regex ok_regex("^(OK)+$");
+    if(std::regex_match(testResult, ok_regex)) {
         *finished = 1;
     } else {
         *finished = -1;

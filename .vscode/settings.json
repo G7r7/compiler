@@ -51,6 +51,7 @@
         "ctime": "cpp",
         "ratio": "cpp",
         "thread": "cpp",
-        "filesystem": "cpp"
+        "filesystem": "cpp",
+        "regex": "cpp"
     }
 }

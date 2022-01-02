@@ -21,4 +21,5 @@ int main(){
     for(i = 0;i < 15 ; i = i + 1){
         assert(tab2[i], i);
     }
+    
 }
