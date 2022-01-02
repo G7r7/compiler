@@ -61,3 +61,6 @@ Lancer une batterie de test avec le testeur (depuis la racine du projet):
     usage: ./tester -m machine-path -c compiler-path -t test-folder-path
 Exemple :
     ./test/build/tester -m msm/msm -c build/compiler -t test/tests/
+
+Pour qu'un programme de test soit comptabilisé comme réussi il faut que tous les assert(valeur1, valeur2),
+réussissent et qu'aucune autre sortie ne soit affichée dans la sorttie standard (pas de print).
