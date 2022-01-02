@@ -3,6 +3,7 @@
 !*.*
 *.txt
 !CMakeList.txt
+!readme.txt
 *.exe
 *.out
 *.dll
