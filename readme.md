@@ -24,7 +24,11 @@ cd msm
 make
 ```
 
-To compile the tester :
+To compile the tester (dependancies: `OpenMP` `pThreads`):
+```shell
+# If openmp is not installed
+sudo apt-get install libomp-dev
+```
 ```shell
 mkdir test/build
 cd test/build
