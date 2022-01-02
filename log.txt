@@ -23,7 +23,16 @@ test/tests/loops/test_for.cmm : OK
 test/tests/loops/test_for2.cmm : OKOK
 test/tests/loops/test_while.cmm : OK
 test/tests/loops/test_while2.cmm : OKOK
-test/tests/memory/malloc1.cmm : OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
+test/tests/memory/malloc1.cmm : OKOKOKOKOKOKOKOKOKOKmalloc : Out of memory.
+OKOKOKOKOKOKOKOKOKOKmalloc : Out of memory.
+OKOKOKOKOKOKOKOKOKOKmalloc : Out of memory.
+OKOKOKOKOKOKOKOKOKOKmalloc : Out of memory.
+OKOKOKOKOKOKOKOKOKOKmalloc : Out of memory.
+OKOKOKOKOKOKOKOKOKOKmalloc : Out of memory.
+OKOKOKOKOKOKOKOKOKOKmalloc : Out of memory.
+OKOKOKOKOKOKOKOKOKOKmalloc : Out of memory.
+OKOKOKOKOKOKOKOKOKOKmalloc : Out of memory.
+OKOKOKOKOKOKOKOKOKOKOK
 test/tests/operators/operations/divide.cmm : OK
 test/tests/operators/operations/divide2.cmm : OK
 test/tests/operators/operations/minus.cmm : OK
@@ -42,4 +51,4 @@ test/tests/variable/crash_test_variable.cmm : Ligne 4 : Double definition
 test/tests/variable/test_bloc_var.cmm : OKOKOK
 test/tests/variable/test_pointeur.cmm : OK
 test/tests/variable/test_variable.cmm : OKOKOKOKOKOK
-Results : 34/38
+Results : 33/38
