@@ -15,6 +15,6 @@ int main(){
         }  
         a = a + 1;
     }  
-    printNb(a);
-    printNb(b);
+    assert(a, 50);
+    assert(b, 35);
 }
