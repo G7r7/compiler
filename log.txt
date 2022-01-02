@@ -23,7 +23,7 @@ test/tests/loops/test_for.cmm : OK
 test/tests/loops/test_for2.cmm : OKOK
 test/tests/loops/test_while.cmm : OK
 test/tests/loops/test_while2.cmm : OKOK
-test/tests/memory/malloc1.cmm : OKOK
+test/tests/memory/malloc1.cmm : OKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOKOK
 test/tests/operators/operations/divide.cmm : OK
 test/tests/operators/operations/divide2.cmm : OK
 test/tests/operators/operations/minus.cmm : OK
